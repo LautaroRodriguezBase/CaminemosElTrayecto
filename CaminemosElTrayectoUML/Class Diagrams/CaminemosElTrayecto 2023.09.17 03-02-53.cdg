@@ -6,11 +6,59 @@
       <Fields/>
       <Constructors/>
       <Methods>
-        <Method name="main" returnType="void" visibility="public" isStatic="true">
+        <Method name="main" returnType="String[]" visibility="public" isStatic="true">
           <Argument type="String[]" name="args"/>
         </Method>
       </Methods>
     </Class>
+    <Class name="Users" package="com.iset.caminemoseltrayecto.users" visibility="public" isAbstract="true" xPosition="261.0" yPosition="20.0">
+      <Fields>
+        <Field name="userName" type="String" visibility="protected"/>
+        <Field name="userPass" type="String" visibility="protected"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="Users" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="setUserName" returnType="String" visibility="public">
+          <Argument type="String" name="name"/>
+        </Method>
+        <Method name="setUserPass" returnType="String" visibility="public">
+          <Argument type="String" name="pass"/>
+        </Method>
+        <Method name="getUserName" returnType="String" visibility="public"/>
+        <Method name="getUserPass" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Administradores" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="103.0" yPosition="369.0">
+      <Fields>
+        <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Docentes" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="305.0" yPosition="369.0">
+      <Fields>
+        <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Alumnos" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="508.0" yPosition="369.0">
+      <Fields>
+        <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
   </ClassDiagramComponents>
-  <ClassDiagramRelations/>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Administradores" target="com.iset.caminemoseltrayecto.users.Users"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docentes" target="com.iset.caminemoseltrayecto.users.Users"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumnos" target="com.iset.caminemoseltrayecto.users.Users"/>
+  </ClassDiagramRelations>
 </ClassDiagram>
