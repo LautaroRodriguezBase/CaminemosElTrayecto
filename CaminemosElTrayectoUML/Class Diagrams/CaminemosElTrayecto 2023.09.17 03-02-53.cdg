@@ -34,31 +34,74 @@
         <Method name="getUserPass" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Administradores" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="103.0" yPosition="369.0">
+    <Class name="Administradores" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="78.0" yPosition="451.0">
+      <Fields>
+        <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="alumnos" type="ArrayList&lt;Alumnos&gt;" visibility="private" isStatic="true"/>
+        <Field name="docentes" type="ArrayList&lt;Docentes&gt;" visibility="private" isStatic="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="addAlumno" returnType="void" visibility="public">
+          <Argument type="Alumno" name="a"/>
+        </Method>
+        <Method name="addDocente" returnType="void" visibility="public">
+          <Argument type="Docente" name="d"/>
+        </Method>
+        <Method name="sancionPara" returnType="void" visibility="public">
+          <Argument type="Sancionable" name="s"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Docentes" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="329.0" yPosition="451.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
-    <Class name="Docentes" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="305.0" yPosition="369.0">
+    <Class name="Alumnos" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="508.0" yPosition="451.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
       </Fields>
-      <Constructors/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
       <Methods/>
     </Class>
-    <Class name="Alumnos" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="508.0" yPosition="369.0">
+    <Interface name="Sancionable" package="" visibility="public" xPosition="554.0" yPosition="20.0">
+      <Methods>
+        <Method name="sancionar" returnType="void" visibility="public"/>
+        <Method name="quitarSancion" returnType="void" visibility="public"/>
+      </Methods>
+    </Interface>
+    <Class name="Cursos" package="" visibility="public" xPosition="835.0" yPosition="20.0">
       <Fields>
-        <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="cantAlumnosMax" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="alumnos" type="ArrayList&lt;Alumnos&gt;" visibility="private"/>
       </Fields>
-      <Constructors/>
-      <Methods/>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="addAlumno" returnType="boolean" visibility="public">
+          <Argument type="Alumno" name="a"/>
+        </Method>
+      </Methods>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
     <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Administradores" target="com.iset.caminemoseltrayecto.users.Users"/>
     <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docentes" target="com.iset.caminemoseltrayecto.users.Users"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docentes" target="Sancionable"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Alumnos" target="Sancionable"/>
     <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumnos" target="com.iset.caminemoseltrayecto.users.Users"/>
   </ClassDiagramRelations>
 </ClassDiagram>
