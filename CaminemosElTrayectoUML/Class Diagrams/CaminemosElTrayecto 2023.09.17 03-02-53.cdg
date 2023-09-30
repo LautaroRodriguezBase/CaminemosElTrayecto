@@ -11,7 +11,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Users" package="com.iset.caminemoseltrayecto.users" visibility="public" isAbstract="true" xPosition="261.0" yPosition="20.0">
+    <Class name="User" package="com.iset.caminemoseltrayecto.users" visibility="public" isAbstract="true" xPosition="261.0" yPosition="20.0">
       <Fields>
         <Field name="userName" type="String" visibility="protected"/>
         <Field name="userPass" type="String" visibility="protected"/>
@@ -34,28 +34,28 @@
         <Method name="getUserPass" returnType="String" visibility="public"/>
       </Methods>
     </Class>
-    <Class name="Administradores" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="78.0" yPosition="451.0">
+    <Class name="Administrador" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="78.0" yPosition="451.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
-        <Field name="alumnos" type="ArrayList&lt;Alumnos&gt;" visibility="private" isStatic="true"/>
-        <Field name="docentes" type="ArrayList&lt;Docentes&gt;" visibility="private" isStatic="true"/>
+        <Field name="alumnos" type="ArrayList&lt;Alumno&gt;" visibility="private" isStatic="true"/>
+        <Field name="docentes" type="ArrayList&lt;Docente&gt;" visibility="private" isStatic="true"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
       </Constructors>
       <Methods>
-        <Method name="addAlumno" returnType="void" visibility="public">
+        <Method name="addAlumno" returnType="Alumno" visibility="public">
           <Argument type="Alumno" name="a"/>
         </Method>
-        <Method name="addDocente" returnType="void" visibility="public">
+        <Method name="addDocente" returnType="Docente" visibility="public">
           <Argument type="Docente" name="d"/>
         </Method>
-        <Method name="sancionPara" returnType="void" visibility="public">
+        <Method name="sancionPara" returnType="Sancionable" visibility="public">
           <Argument type="Sancionable" name="s"/>
         </Method>
       </Methods>
     </Class>
-    <Class name="Docentes" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="329.0" yPosition="451.0">
+    <Class name="Docente" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="329.0" yPosition="451.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
       </Fields>
@@ -64,7 +64,7 @@
       </Constructors>
       <Methods/>
     </Class>
-    <Class name="Alumnos" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="508.0" yPosition="451.0">
+    <Class name="Alumno" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="508.0" yPosition="451.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
       </Fields>
@@ -72,6 +72,24 @@
         <Constructor visibility="public"/>
       </Constructors>
       <Methods/>
+    </Class>
+    <Class name="Curso" package="" visibility="public" xPosition="881.0" yPosition="20.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="descripcion" type="String" visibility="private"/>
+        <Field name="estado" type="String" visibility="private"/>
+        <Field name="cantAlumnosMax" type="int" visibility="private" isStatic="true" isFinal="true"/>
+        <Field name="alumnos" type="ArrayList&lt;Alumno&gt;" visibility="private"/>
+        <Field name="titular" type="Docente" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="addAlumno" returnType="Alumno" visibility="public">
+          <Argument type="Alumno" name="a"/>
+        </Method>
+      </Methods>
     </Class>
     <Interface name="Sancionable" package="" visibility="public" xPosition="554.0" yPosition="20.0">
       <Methods>
@@ -79,29 +97,47 @@
         <Method name="quitarSancion" returnType="void" visibility="public"/>
       </Methods>
     </Interface>
-    <Class name="Cursos" package="" visibility="public" xPosition="835.0" yPosition="20.0">
+    <Class name="Instituto" package="" visibility="public" xPosition="886.0" yPosition="307.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
-        <Field name="descripcion" type="String" visibility="private"/>
-        <Field name="estado" type="String" visibility="private"/>
-        <Field name="cantAlumnosMax" type="int" visibility="private" isStatic="true" isFinal="true"/>
-        <Field name="alumnos" type="ArrayList&lt;Alumnos&gt;" visibility="private"/>
+        <Field name="alumnos" type="ArrayList&lt;Alumno&gt;" visibility="private"/>
+        <Field name="docentes" type="ArrayList&lt;Docente&gt;" visibility="private"/>
+        <Field name="cursos" type="ArrayList&lt;Curso&gt;" visibility="private"/>
       </Fields>
       <Constructors>
         <Constructor visibility="public"/>
       </Constructors>
       <Methods>
-        <Method name="addAlumno" returnType="boolean" visibility="public">
-          <Argument type="Alumno" name="a"/>
-        </Method>
+        <Method name="untitledMethod" returnType="void" visibility="public"/>
+        <Method name="untitledMethod1" returnType="void" visibility="public"/>
       </Methods>
+    </Class>
+    <Class name="LogIn" package="" visibility="public" xPosition="78.0" yPosition="829.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="IGAlumno" package="" visibility="public" xPosition="293.0" yPosition="829.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="IGDocente" package="" visibility="public" xPosition="487.0" yPosition="829.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="IGAdmin" package="" visibility="public" xPosition="712.0" yPosition="829.0">
+      <Fields/>
+      <Constructors/>
+      <Methods/>
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Administradores" target="com.iset.caminemoseltrayecto.users.Users"/>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docentes" target="com.iset.caminemoseltrayecto.users.Users"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docentes" target="Sancionable"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Alumnos" target="Sancionable"/>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumnos" target="com.iset.caminemoseltrayecto.users.Users"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumno" target="com.iset.caminemoseltrayecto.users.User"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Administrador" target="com.iset.caminemoseltrayecto.users.User"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docente" target="com.iset.caminemoseltrayecto.users.User"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Alumno" target="Sancionable"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docente" target="Sancionable"/>
   </ClassDiagramRelations>
 </ClassDiagram>
