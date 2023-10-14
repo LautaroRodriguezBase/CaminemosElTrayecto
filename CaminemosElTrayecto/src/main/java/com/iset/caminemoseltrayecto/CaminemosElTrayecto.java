@@ -4,6 +4,8 @@
 
 package com.iset.caminemoseltrayecto;
 
+import visual.LogIn;
+
 /**
  *
  * @author lauti
@@ -11,6 +13,8 @@ package com.iset.caminemoseltrayecto;
 public class CaminemosElTrayecto {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        LogIn li = new LogIn();
+        li.setVisible(true);
+        li.setLocationRelativeTo(null);
     }
 }
