@@ -1,18 +1,27 @@
 package visual;
 
+import java.awt.Color;
 import java.awt.event.*;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 
 /**
  * @author lucas
  * @author lrbase
  */
-public class LogIn extends javax.swing.JFrame implements ActionListener{
+public class LogIn extends javax.swing.JFrame implements ActionListener, KeyListener{
 
     public LogIn(){
         setTitle("Bienvenido");
         initComponents();
         this.setLocationRelativeTo(null);
+        
         btnIngresar.addActionListener(this);
+        tfUserName.addKeyListener(this);
+        
+        Border borderWhite = BorderFactory.createLineBorder(Color.decode("#ffffff"));
+        tfUserName.setBorder(borderWhite);
+        tfUserPass.setBorder(borderWhite);
     }
 
     /**
@@ -24,17 +33,18 @@ public class LogIn extends javax.swing.JFrame implements ActionListener{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jPanel = new javax.swing.JPanel();
         lUsuario = new javax.swing.JLabel();
         lContrasena = new javax.swing.JLabel();
         tfUserName = new javax.swing.JTextField();
         tfUserPass = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
+        lMsjDeIngreso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(25, 20, 25));
-        jPanel1.setPreferredSize(new java.awt.Dimension(500, 400));
+        jPanel.setBackground(new java.awt.Color(25, 20, 25));
+        jPanel.setPreferredSize(new java.awt.Dimension(500, 400));
 
         lUsuario.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -63,32 +73,37 @@ public class LogIn extends javax.swing.JFrame implements ActionListener{
 
         btnIngresar.setLabel("Ingresar");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(tfUserName)
-                    .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(btnIngresar))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        lMsjDeIngreso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(225, 225, 225)
                         .addComponent(lUsuario))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanelLayout.createSequentialGroup()
                         .addGap(215, 215, 215)
-                        .addComponent(lContrasena)))
+                        .addComponent(lContrasena))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(212, 212, 212)
+                        .addComponent(btnIngresar)))
                 .addContainerGap(216, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(tfUserName)
+                        .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)))
+                .addGap(50, 50, 50))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
                 .addGap(120, 120, 120)
                 .addComponent(lUsuario)
                 .addGap(18, 18, 18)
@@ -97,21 +112,23 @@ public class LogIn extends javax.swing.JFrame implements ActionListener{
                 .addComponent(lContrasena)
                 .addGap(18, 18, 18)
                 .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(18, 18, 18)
+                .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(165, 165, 165))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -163,8 +180,9 @@ public class LogIn extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel;
     private javax.swing.JLabel lContrasena;
+    private javax.swing.JLabel lMsjDeIngreso;
     private javax.swing.JLabel lUsuario;
     private javax.swing.JTextField tfUserName;
     private javax.swing.JTextField tfUserPass;
@@ -173,12 +191,50 @@ public class LogIn extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnIngresar){
-            AdminFrame af = new AdminFrame();
-            af.setVisible(true);
-            af.setResizable(false);
-            af.setLocationRelativeTo(null);
-            
-            this.setVisible(false);
+            Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
+            String tfU = tfUserName.getText();
+            String tfP = tfUserPass.getText();
+
+            if(!(tfU.equals("")) && !(tfP.equals(""))){
+                if(tfU.equals("Admin") && tfP.equals("1234")){
+                    
+                    AdminFrame af = new AdminFrame();
+                    af.setVisible(true);
+                    af.setResizable(false);
+                    af.setLocationRelativeTo(null);
+
+                    this.setVisible(false);
+                }else{
+                    lMsjDeIngreso.setText("Usuario o contraseña invalidos.");
+                    tfUserName.setBorder(borderRed);
+                    tfUserPass.setBorder(borderRed);
+                }
+            }else{
+                lMsjDeIngreso.setText("No puedes tener campos vacios.");
+                tfUserName.requestFocusInWindow();
+                tfUserName.setBorder(borderRed);
+                tfUserPass.setBorder(borderRed);
+
+            }
         }
+    }
+    
+    @Override
+    public void keyReleased(KeyEvent e) {
+        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
+            Border borderGrey = BorderFactory.createLineBorder(Color.decode("#444444"));
+            tfUserName.setBorder(borderGrey);
+            tfUserPass.setBorder(borderGrey);
+        }
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
