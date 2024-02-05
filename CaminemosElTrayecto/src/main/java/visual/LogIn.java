@@ -15,9 +15,9 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         setTitle("Bienvenido");
         initComponents();
         this.setLocationRelativeTo(null);
-        
+
         btnIngresar.addActionListener(this);
-        tfUserName.addKeyListener(this);
+        tfUserPass.addKeyListener(this);
         
         Border borderWhite = BorderFactory.createLineBorder(Color.decode("#ffffff"));
         tfUserName.setBorder(borderWhite);
@@ -47,10 +47,12 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         jPanel.setPreferredSize(new java.awt.Dimension(500, 400));
 
         lUsuario.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        lUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lUsuario.setText("Usuario");
 
         lContrasena.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        lContrasena.setForeground(new java.awt.Color(255, 255, 255));
         lContrasena.setText("Contraseña");
 
         tfUserName.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
@@ -74,6 +76,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         btnIngresar.setLabel("Ingresar");
 
         lMsjDeIngreso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lMsjDeIngreso.setForeground(new java.awt.Color(255, 255, 255));
         lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
@@ -96,9 +99,8 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(tfUserName)
-                        .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)))
+                    .addComponent(tfUserName)
+                    .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
         );
         jPanelLayout.setVerticalGroup(
@@ -187,54 +189,64 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     private javax.swing.JTextField tfUserName;
     private javax.swing.JTextField tfUserPass;
     // End of variables declaration//GEN-END:variables
+    
+    void ingresar(){
+        Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
+        String tfU = tfUserName.getText();
+        String tfP = tfUserPass.getText();
 
-    @Override
-    public void actionPerformed(ActionEvent e){
-        if(e.getSource() == btnIngresar){
-            Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
-            String tfU = tfUserName.getText();
-            String tfP = tfUserPass.getText();
+        if(!(tfU.equals("")) && !(tfP.equals(""))){
+            if(tfU.equals("Admin") && tfP.equals("1234")){
 
-            if(!(tfU.equals("")) && !(tfP.equals(""))){
-                if(tfU.equals("Admin") && tfP.equals("1234")){
-                    
-                    AdminFrame af = new AdminFrame();
-                    af.setVisible(true);
-                    af.setResizable(false);
-                    af.setLocationRelativeTo(null);
+                AdminFrame af = new AdminFrame();
+                af.setVisible(true);
+                af.setResizable(false);
+                af.setLocationRelativeTo(null);
 
-                    this.setVisible(false);
-                }else{
-                    lMsjDeIngreso.setText("Usuario o contraseña invalidos.");
-                    tfUserName.setBorder(borderRed);
-                    tfUserPass.setBorder(borderRed);
-                }
+                this.setVisible(false);
             }else{
-                lMsjDeIngreso.setText("No puedes tener campos vacios.");
-                tfUserName.requestFocusInWindow();
+                lMsjDeIngreso.setText("Usuario o contraseña invalidos.");
                 tfUserName.setBorder(borderRed);
                 tfUserPass.setBorder(borderRed);
-
             }
+        }else{
+            lMsjDeIngreso.setText("No puedes tener campos vacios.");
+            tfUserName.requestFocusInWindow();
+            tfUserName.setBorder(borderRed);
+            tfUserPass.setBorder(borderRed);
+
         }
     }
     
+    // Acciones de botones
+    @Override
+    public void actionPerformed(ActionEvent e){
+        if(e.getSource() == btnIngresar){
+            ingresar();
+        }
+    }
+    
+    //Acciones de teclas
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_ESCAPE){
-            Border borderGrey = BorderFactory.createLineBorder(Color.decode("#444444"));
-            tfUserName.setBorder(borderGrey);
-            tfUserPass.setBorder(borderGrey);
+        switch(e.getKeyCode()){
+            case KeyEvent.VK_ESCAPE:
+                Border borderGrey = BorderFactory.createLineBorder(Color.decode("#444444"));
+                tfUserName.setBorder(borderGrey);
+                tfUserPass.setBorder(borderGrey);
+                break;
+            case KeyEvent.VK_ENTER:
+                ingresar();
+                break;
         }
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
 }
