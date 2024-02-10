@@ -1,4 +1,4 @@
-package visual;
+package com.iset.caminemoseltrayecto.visual;
 
 import java.awt.Color;
 import java.awt.event.*;
@@ -200,7 +200,6 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
 
                 AdminFrame af = new AdminFrame();
                 af.setVisible(true);
-                af.setResizable(false);
                 af.setLocationRelativeTo(null);
 
                 this.setVisible(false);
@@ -226,7 +225,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         }
     }
     
-    //Acciones de teclas
+    // Acciones de teclas
     @Override
     public void keyReleased(KeyEvent e) {
         switch(e.getKeyCode()){
@@ -240,11 +239,9 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 break;
         }
     }
-
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
     @Override
     public void keyPressed(KeyEvent e) {
     }
