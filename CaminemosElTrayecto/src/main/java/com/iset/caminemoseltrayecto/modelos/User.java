@@ -18,7 +18,7 @@ public abstract class User {
     }
 
     public String getUserName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return this.userName;
     }
 
     public String getUserPass() {
