@@ -27,21 +27,39 @@ public class CaminemosElTrayecto {
     }
 
 
-    public Curso addAlumnoAlCurso(Alumno a, Curso c) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addAlumnoAlCurso(Alumno a, Curso c) {
+        if(a != null && c != null){
+            c.addAlumno(a);// Tambien se tiene que actualizar el archivo
+        }// Lanzar una excepcion
     }
 
-    public void addCurso() {
+    //Hacer polimorfismo del tipo sobrecarga de funciones para que alcance a todas las opciones
+    public void addCurso(){//No se si es a los docentes, al alumno, a la propia universidad
+        
     }
 
     public User existe(String uName, String uPass) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        for(User u : usuarios){
+            if(u.getUserName().equals(uName) && u.getUserPass().equals(uPass)){
+                return u;
+            }
+        }
+        //Crear excepciones para estos casos
+        throw new UnsupportedOperationException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
     }
 
-    public void verCursosDisponibles(Alumno a) {
+    public ArrayList verCursosDisponibles(Alumno a){
+        ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
+        for(Curso c : cursos){
+            if(c.getCursosPrevios() == null){//Faltan crear varias cosas en el modelo cursos
+                cursosDisponibles.add(c);
+            }
+        }
+        return cursosDisponibles;
     }
 
-    public void verCursosAprobados(Alumno a) {
+    public void verCursosAprobados(Alumno a){
+        
     }
 
     public Docente verCursosHabilitadosYCerrados(Docente d) {
