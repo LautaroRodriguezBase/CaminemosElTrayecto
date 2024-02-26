@@ -2,7 +2,7 @@
 
 <ClassDiagram name="CaminemosElTrayecto">
   <ClassDiagramComponents>
-    <Class name="CaminemosElTrayecto" package="com.iset.caminemoseltrayecto" visibility="public" xPosition="1705.0" yPosition="451.0">
+    <Class name="CaminemosElTrayecto" package="com.iset.caminemoseltrayecto" visibility="public" xPosition="1475.0" yPosition="527.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
         <Field name="alumnos" type="ArrayList&lt;Alumno&gt;" visibility="private"/>
@@ -71,7 +71,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="User" package="com.iset.caminemoseltrayecto.users" visibility="public" isAbstract="true" xPosition="223.0" yPosition="186.0">
+    <Class name="User" package="com.iset.caminemoseltrayecto.users" visibility="public" isAbstract="true" xPosition="277.0" yPosition="255.0">
       <Fields>
         <Field name="userName" type="String" visibility="protected"/>
         <Field name="userPass" type="String" visibility="protected"/>
@@ -103,7 +103,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Admin" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="95.0" yPosition="602.0">
+    <Class name="Admin" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="236.0" yPosition="668.0">
       <Fields>
         <Field name="userType" type="int" visibility="private" isStatic="true" isFinal="true"/>
         <Field name="alumnos" type="ArrayList&lt;Alumno&gt;" visibility="private" isStatic="true"/>
@@ -131,7 +131,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Docente" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="145.0" yPosition="898.0">
+    <Class name="Docente" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="213.0" yPosition="971.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
         <Field name="apellido" type="String" visibility="private"/>
@@ -163,7 +163,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Alumno" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="575.0" yPosition="411.0">
+    <Class name="Alumno" package="com.iset.caminemoseltrayecto.users" visibility="public" xPosition="585.0" yPosition="564.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
         <Field name="apellido" type="String" visibility="private"/>
@@ -193,7 +193,7 @@
         </Method>
       </Methods>
     </Class>
-    <Class name="Curso" package="" visibility="public" xPosition="563.0" yPosition="72.0">
+    <Class name="Curso" package="" visibility="public" xPosition="554.0" yPosition="112.0">
       <Fields>
         <Field name="nombre" type="String" visibility="private"/>
         <Field name="descripcion" type="String" visibility="private"/>
@@ -217,9 +217,21 @@
         <Method name="addAlumno" returnType="Alumno" visibility="public">
           <Argument type="Alumno" name="a"/>
         </Method>
-        <Method name="cambiarEstado" returnType="String" visibility="public">
+        <Method name="cambiarEstado" returnType="void" visibility="public">
           <Argument type="String" name="estado"/>
         </Method>
+        <Method name="getCursosPrevios" returnType="Curso[]" visibility="public"/>
+        <Method name="setCursosPrevios" returnType="void" visibility="public">
+          <Argument type="Cursos[]" name="cursosPrevios"/>
+        </Method>
+        <Method name="getTitular" returnType="Docente" visibility="public"/>
+        <Method name="getNombre" returnType="String" visibility="public"/>
+        <Method name="getDescripcion" returnType="String" visibility="public"/>
+        <Method name="getEstado" returnType="String" visibility="public"/>
+        <Method name="setDescripcion" returnType="void" visibility="public">
+          <Argument type="String" name="descripcion"/>
+        </Method>
+        <Method name="getAlumnos" returnType="ArrayList&lt;Alumno&gt;" visibility="public"/>
       </Methods>
     </Class>
     <Class name="LogIn" package="" visibility="public" xPosition="409.0" yPosition="1675.0">
@@ -329,13 +341,13 @@
         </Method>
       </Methods>
     </Class>
-    <Interface name="Sancionable" package="" visibility="public" xPosition="1289.0" yPosition="1000.0">
+    <Interface name="Sancionable" package="" visibility="public" xPosition="1287.0" yPosition="1172.0">
       <Methods>
         <Method name="sancionar" returnType="void" visibility="public"/>
         <Method name="quitarSancion" returnType="void" visibility="public"/>
       </Methods>
     </Interface>
-    <Interface name="AdministradorCurso" package="" visibility="public" xPosition="963.0" yPosition="1151.0">
+    <Interface name="AdministradorCurso" package="" visibility="public" xPosition="932.0" yPosition="1081.0">
       <Methods>
         <Method name="cambiarEstadoDelCurso" returnType="String" visibility="public">
           <Argument type="Curso" name="c"/>
@@ -345,16 +357,16 @@
     </Interface>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
+    <HasRelation name="Contiene" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="com.iset.caminemoseltrayecto.users.Docente" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docente" target="com.iset.caminemoseltrayecto.users.User"/>
+    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docente" target="AdministradorCurso"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Admin" target="com.iset.caminemoseltrayecto.users.User"/>
     <HasRelation name="tiene" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="Curso" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
     <HasRelation name="Contine" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="com.iset.caminemoseltrayecto.users.Alumno" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <HasRelation name="Contiene" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="com.iset.caminemoseltrayecto.users.Admin" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Alumno" target="Sancionable"/>
-    <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docente" target="AdministradorCurso"/>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Docente" target="com.iset.caminemoseltrayecto.users.User"/>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumno" target="com.iset.caminemoseltrayecto.users.User"/>
-    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Admin" target="com.iset.caminemoseltrayecto.users.User"/>
-    <HasRelation name="Contiene" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="com.iset.caminemoseltrayecto.users.Docente" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Docente" target="Sancionable"/>
     <ImplementsRelation name="&lt;&lt;implements&gt;&gt;" source="com.iset.caminemoseltrayecto.users.Admin" target="AdministradorCurso"/>
-    <HasRelation name="Contiene" source="com.iset.caminemoseltrayecto.CaminemosElTrayecto" target="com.iset.caminemoseltrayecto.users.Admin" type="Default" sourceCardinality="0..1" targetCardinality="1..*" collectionType="List"/>
+    <IsRelation name="is" source="com.iset.caminemoseltrayecto.users.Alumno" target="com.iset.caminemoseltrayecto.users.User"/>
   </ClassDiagramRelations>
 </ClassDiagram>
