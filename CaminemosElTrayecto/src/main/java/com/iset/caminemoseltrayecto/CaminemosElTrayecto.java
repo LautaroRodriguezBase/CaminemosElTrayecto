@@ -39,7 +39,15 @@ public class CaminemosElTrayecto {
     }
 
     public User existe(String uName, String uPass) {
-        for(User u : usuarios){
+        /*
+        Antes de eso tiene que llenar el array de usuarios leyendolo del archivo.
+        Para eso tiene que haber un archivo con todas las opciones, de usuarios, de almnos, etc.
+        A su vez tiene que haber archivos de respaldo de los anteriores.
+        En caso de fallar levanta el original, levanta el de respaldo, elimina al original, y lo recrea de nuevo.
+        Estos archivos deberian estar en carpetas separadas.
+        */
+        
+        for(User u : this.usuarios){
             if(u.getUserName().equals(uName) && u.getUserPass().equals(uPass)){
                 return u;
             }
@@ -50,16 +58,32 @@ public class CaminemosElTrayecto {
 
     public ArrayList verCursosDisponibles(Alumno a){
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
-        for(Curso c : cursos){
-            if(c.getCursosPrevios() == null){//Faltan crear varias cosas en el modelo cursos
-                cursosDisponibles.add(c);
+        
+        for(Curso c : this.cursos){
+            Curso [] cursosPrevios = c.getCursosPrevios();
+            
+            switch(cursosPrevios.length){
+                case 0:
+                    cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
+                    break;
+                case 1:
+                    if(a.getCursosAprobados().contains(cursosPrevios[0])){
+                        cursosDisponibles.add(c);
+                    }
+                    break;
+                case 2:
+                    if(a.getCursosAprobados().contains(cursosPrevios[0]) && a.getCursosAprobados().contains(cursosPrevios[1])){
+                        cursosDisponibles.add(c);
+                    }
+                    break;
             }
         }
+        
         return cursosDisponibles;
     }
 
-    public void verCursosAprobados(Alumno a){
-        
+    public ArrayList<Curso> verCursosAprobados(Alumno a){
+        return a.getCursosAprobados();
     }
 
     public Docente verCursosHabilitadosYCerrados(Docente d) {
