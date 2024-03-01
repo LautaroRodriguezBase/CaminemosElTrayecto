@@ -1,5 +1,6 @@
 package com.iset.caminemoseltrayecto.visual;
 
+import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
 import java.awt.Color;
 import java.awt.event.*;
 import javax.swing.BorderFactory;
@@ -194,26 +195,17 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
         String tfU = tfUserName.getText();
         String tfP = tfUserPass.getText();
-
+        
+        // teoricamente todo esto deberia estar en un TRY CATCH
         if(!(tfU.equals("")) && !(tfP.equals(""))){
-            if(tfU.equals("Admin") && tfP.equals("1234")){
-
-                AdminFrame af = new AdminFrame();
-                af.setVisible(true);
-                af.setLocationRelativeTo(null);
-
+            if(CaminemosElTrayecto.ingresar(tfU, tfP)){
                 this.setVisible(false);
-            }else{
-                lMsjDeIngreso.setText("Usuario o contraseña invalidos.");
-                tfUserName.setBorder(borderRed);
-                tfUserPass.setBorder(borderRed);
             }
         }else{
             lMsjDeIngreso.setText("No puedes tener campos vacios.");
             tfUserName.requestFocusInWindow();
             tfUserName.setBorder(borderRed);
             tfUserPass.setBorder(borderRed);
-
         }
     }
     
