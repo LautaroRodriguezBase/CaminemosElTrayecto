@@ -27,6 +27,7 @@ public abstract class User {
 
     public abstract boolean esAdmin(User u);
     public abstract boolean esDocente(User u);
+    public abstract boolean esAlumno(User u);
     public abstract void mostrarVentana();
 
     public void changePass(String pass) {

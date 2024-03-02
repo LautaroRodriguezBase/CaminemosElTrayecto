@@ -4,5 +4,5 @@ import com.iset.caminemoseltrayecto.modelos.Curso;
 
 public interface AdministradorCurso {
 
-    public String cambiarEstadoDelCurso(Curso c, String estado);
+    public void cambiarEstadoDelCurso(Curso c, int estado);
 }

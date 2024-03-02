@@ -30,6 +30,8 @@ public class Curso {
     }
 
     public void cambiarEstado(int estado) {
-        estadoCurso = estado;
+        if(estado >= 0 && estado < 4){
+            estadoCurso = estado;
+        }
     }
 }

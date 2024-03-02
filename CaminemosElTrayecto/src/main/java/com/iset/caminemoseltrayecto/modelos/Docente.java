@@ -26,8 +26,8 @@ public class Docente extends User implements Sancionable, AdministradorCurso {
     }
 
     
-    public Curso addCurso(Curso curso) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addCurso(Curso curso) {
+        cursosCreados.add(curso);
     }
     //Abstractas
     public void sancionar() {
@@ -40,14 +40,31 @@ public class Docente extends User implements Sancionable, AdministradorCurso {
     
     //DD
     public boolean esAdmin(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        boolean resultado = false;
+        return resultado;
     }
+    
     public boolean esDocente(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        boolean resultado = false;
+        
+        if(u.getClass().getName().equals("Docente")){
+            resultado = true;
+        }else{
+            resultado = false;
+        }
+        
+        return resultado;
+    }
+    
+    public boolean esAlumno(User u){
+        boolean resultado = false;
+        return resultado;
     }
 
     @Override
-    public String cambiarEstadoDelCurso(Curso c, String estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cambiarEstadoDelCurso(Curso c, int estado) {
+        if(estado >= 0 && estado < 4){
+            c.cambiarEstado(estado);
+        }
     }
 }

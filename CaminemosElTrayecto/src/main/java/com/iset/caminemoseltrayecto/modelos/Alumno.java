@@ -42,4 +42,9 @@ public class Alumno extends User implements Sancionable {
     public boolean esDocente(User u) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
+    public boolean esAlumno(User u){
+        boolean resultado = false;
+        
+        return resultado;
+    }
 }
