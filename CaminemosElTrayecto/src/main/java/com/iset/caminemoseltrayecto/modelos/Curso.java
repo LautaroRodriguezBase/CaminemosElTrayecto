@@ -10,26 +10,26 @@ public class Curso {
     
     private String nombre;
     private String descripcion;
-    private String estado;
+    private int estadoCurso = 0;
 
     private ArrayList<Alumno> alumnos;
     private Docente titular;
     private Curso[] cursosPrevios;
 
-    public Curso(String nombre, String descripcion, String estado, ArrayList alumnos, Docente titular, Curso[] cursosPrevios, int cantAlumnosMax) {
+    public Curso(String nombre, String descripcion, int estado, ArrayList alumnos, Docente titular, Curso[] cursosPrevios, int cantAlumnosMax) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estado = estado;
+        this.estadoCurso = estado;
         this.alumnos = alumnos;
         this.titular = titular;
         this.cursosPrevios = cursosPrevios;
     }
 
-    public Alumno addAlumno(Alumno a) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addAlumno(Alumno a) {
+        alumnos.add(a);
     }
 
-    public String cambiarEstado(String estado) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void cambiarEstado(int estado) {
+        estadoCurso = estado;
     }
 }

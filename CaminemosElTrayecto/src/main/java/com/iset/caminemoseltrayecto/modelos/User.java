@@ -29,7 +29,7 @@ public abstract class User {
     public abstract boolean esDocente(User u);
     public abstract void mostrarVentana();
 
-    public String changePass(String pass) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void changePass(String pass) {
+        userPass = pass;
     }
 }
