@@ -37,13 +37,25 @@ public class Alumno extends User implements Sancionable {
     
     //DD
     public boolean esAdmin(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    public boolean esDocente(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-    public boolean esAlumno(User u){
         boolean resultado = false;
+        
+        return resultado;
+    }
+    
+    public boolean esDocente(User u) {
+        boolean resultado = false;
+
+        if(u.getClass().getName().equals("Docente")){
+            resultado = true;
+        }else{
+            resultado = false;
+        }
+
+        return resultado;
+    }
+   
+    public boolean esAlumno(User u){
+        boolean resultado = true;
         
         return resultado;
     }
