@@ -4,16 +4,19 @@
  */
 package com.iset.caminemoseltrayecto.visual;
 
+import com.iset.caminemoseltrayecto.modelos.Admin;
+
 /**
  *
  * @author lauti
  */
 public class AdminFrame extends javax.swing.JFrame {
-
+    Admin admin;
     /**
      * Creates new form AdminFrame
      */
-    public AdminFrame() {
+    public AdminFrame(Admin admin){
+        this.admin = admin;
         initComponents();
     }
 
@@ -106,8 +109,9 @@ public class AdminFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private Admin admin;
             public void run() {
-                new AdminFrame().setVisible(true);
+                new AdminFrame(this.admin).setVisible(true);
             }
         });
     }

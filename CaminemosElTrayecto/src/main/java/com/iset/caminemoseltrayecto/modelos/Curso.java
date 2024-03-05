@@ -1,37 +1,73 @@
 package com.iset.caminemoseltrayecto.modelos;
 
-import com.iset.caminemoseltrayecto.modelos.Alumno;
-import com.iset.caminemoseltrayecto.modelos.Docente;
 import java.util.ArrayList;
 
 public class Curso {
 
-    private static final int cantAlumnosMax = 15;
-    
+    public static final int cantAlumnosMax = 15;
+    private static final String [] estadosCurso = {"Propuesto", "Habilitado", "Cerrado", "Finalizado"};
+
     private String nombre;
     private String descripcion;
-    private int estadoCurso = 0;
+    private String estadoCurso = "Propuesto";
 
     private ArrayList<Alumno> alumnos;
     private Docente titular;
     private Curso[] cursosPrevios;
 
-    public Curso(String nombre, String descripcion, int estado, ArrayList alumnos, Docente titular, Curso[] cursosPrevios, int cantAlumnosMax) {
+    public Curso(String nombre, String descripcion, String estado, Docente titular, Curso[] cursosPrevios) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.estadoCurso = estado;
-        this.alumnos = alumnos;
         this.titular = titular;
         this.cursosPrevios = cursosPrevios;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+    public String getDescripcion() {
+        return descripcion;
+    }
+    public String getEstadoCurso() {
+        return estadoCurso;
+    }
+    public ArrayList<Alumno> getAlumnos() {
+        return alumnos;
+    }
+    public Docente getTitular() {
+        return titular;
+    }
+    public Curso[] getCursosPrevios() {
+        return cursosPrevios;
+    }
     public void addAlumno(Alumno a) {
         alumnos.add(a);
     }
 
-    public void cambiarEstado(int estado) {
-        if(estado >= 0 && estado < 4){
-            estadoCurso = estado;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    public void setEstadoCurso(String estadoCurso) {
+        this.estadoCurso = estadoCurso;
+    }
+    public void setTitular(Docente titular) {
+        this.titular = titular;
+    }
+
+    public void cambiarEstado(String estado) {
+        for(String estadosCurso1 : Curso.estadosCurso) {
+            if (estadosCurso1.equals(estado)) {
+                this.estadoCurso = estado;
+            }
         }
+    }
+
+    // Funciones estaticas
+    public static String[] getEstadosCurso(){
+        return Curso.estadosCurso;
     }
 }

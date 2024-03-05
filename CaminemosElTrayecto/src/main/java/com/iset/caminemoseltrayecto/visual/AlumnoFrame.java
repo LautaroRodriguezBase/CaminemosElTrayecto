@@ -4,16 +4,19 @@
  */
 package com.iset.caminemoseltrayecto.visual;
 
+import com.iset.caminemoseltrayecto.modelos.Alumno;
+
 /**
  *
  * @author lauti
  */
 public class AlumnoFrame extends javax.swing.JFrame {
-
+    private Alumno alumno;
     /**
      * Creates new form UserFrame
      */
-    public AlumnoFrame() {
+    public AlumnoFrame(Alumno alumno) {
+        this.alumno = alumno;
         initComponents();
     }
 
@@ -105,8 +108,9 @@ public class AlumnoFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            private Alumno alumno;
             public void run() {
-                new AlumnoFrame().setVisible(true);
+                new AlumnoFrame(this.alumno).setVisible(true);
             }
         });
     }

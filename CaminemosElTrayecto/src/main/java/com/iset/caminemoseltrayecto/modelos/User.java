@@ -12,7 +12,6 @@ public abstract class User {
     public void setUserName(String name) {
         userName = name;
     }
-
     public void setUserPass(String pass) {
         userPass = pass;
     }
@@ -20,17 +19,11 @@ public abstract class User {
     public String getUserName() {
         return this.userName;
     }
-
     public String getUserPass() {
         return this.userPass;
     }
 
     public abstract boolean esAdmin(User u);
     public abstract boolean esDocente(User u);
-    public abstract boolean esAlumno(User u);
     public abstract void mostrarVentana();
-
-    public void changePass(String pass) {
-        userPass = pass;
-    }
 }

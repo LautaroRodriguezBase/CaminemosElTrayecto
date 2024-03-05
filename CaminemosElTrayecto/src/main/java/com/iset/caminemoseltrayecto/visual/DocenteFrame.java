@@ -4,16 +4,21 @@
  */
 package com.iset.caminemoseltrayecto.visual;
 
+import com.iset.caminemoseltrayecto.modelos.Docente;
+
 /**
  *
  * @author lauti
  */
 public class DocenteFrame extends javax.swing.JFrame {
 
+    private Docente docente;//Probablemente Final
+
     /**
      * Creates new form DocenteFrame
      */
-    public DocenteFrame() {
+    public DocenteFrame(Docente docente) {
+        this.docente = docente;
         initComponents();
     }
 
@@ -114,11 +119,11 @@ public class DocenteFrame extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(DocenteFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
+        java.awt.EventQueue.invokeLater(new Runnable() {//Dudo que se ejecute
+            private Docente docente;
             public void run() {
-                new DocenteFrame().setVisible(true);
+                new DocenteFrame(this.docente).setVisible(true);
             }
         });
     }

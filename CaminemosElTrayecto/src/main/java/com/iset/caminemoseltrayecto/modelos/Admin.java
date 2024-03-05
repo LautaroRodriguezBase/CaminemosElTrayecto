@@ -2,6 +2,8 @@ package com.iset.caminemoseltrayecto.modelos;
 
 import com.iset.caminemoseltrayecto.visual.AdministradorCurso;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
+import com.iset.caminemoseltrayecto.visual.AdminFrame;
+
 import java.util.ArrayList;
 
 public class Admin extends User implements AdministradorCurso {
@@ -9,38 +11,44 @@ public class Admin extends User implements AdministradorCurso {
     //private static final int userType = 0;
 
     private static ArrayList<Alumno> alumnos;
-
     private static ArrayList<Docente> docentes;
 
-    public Admin(String uName, String uPass) {
+    public Admin(String uName, String uPass){
         super(uName, uPass);
     }
 
-    public Alumno addAlumno(Alumno a) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addAlumno(Alumno a){
+        //ademas debe guardarlo en el archivo y lanzar una excepcion en caso de fallar
+        this.alumnos.add(a);
     }
 
-    public Docente addDocente(Docente d) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void addDocente(Docente d){
+        //ademas debe guardarlo en el archivo y lanzar una excepcion en caso de fallar
+        this.docentes.add(d);
     }
 
-    public Sancionable sancionPara(Sancionable s) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void sancionPara(Sancionable s){
+        s.sancionar();
     }
 
-    public void mostrarVentana() {
-    }
-
-    public boolean esAdmin(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    public boolean esDocente(User u) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
+    //Implementa de Administrador de curso
     @Override
-    public String cambiarEstadoDelCurso(Curso c, String estado) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void cambiarEstadoDelCurso(Curso c, String estado){
+    //Creo que no se necesita
+        c.cambiarEstado(estado);
+    }
+    
+    //Heredan de User
+    @Override
+    public boolean esAdmin(User u){
+        return true;
+    }
+    @Override
+    public boolean esDocente(User u){
+        return false;
+    }
+    @Override
+    public void mostrarVentana(){
+        new AdminFrame(this).setVisible(true);
     }
 }
