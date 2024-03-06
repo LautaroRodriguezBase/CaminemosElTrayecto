@@ -72,15 +72,27 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
     }
     
     public void addCursoAprobado(Curso c){
-        //Cada cambio de datos de los archivos van a necesitar excepciones
+        if(c != null){
+            cursosAprobados.add(c);
+        }else{
+            throw new NullPointerException("El curso que a ingresado no es valido");
+        }
     }
     
     public void addCursoInscripto(Curso c){
-        
+        if(c != null){
+            cursosInscriptos.add(c);
+        }else{
+            throw new NullPointerException("El curso que a ingresado no es valido");
+        }
     }
     
     public void removeCursoInscripto(Curso c){
-        
+        if(c != null){
+            cursosInscriptos.remove(c);
+        }else{
+            throw new NullPointerException("El curso que a ingresado no es valido");
+        }
     }
     
     
