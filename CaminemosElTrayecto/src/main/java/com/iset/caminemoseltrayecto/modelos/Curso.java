@@ -59,10 +59,17 @@ public class Curso {
     }
 
     public void cambiarEstado(String estado) {
+        boolean perteneceEstados = false;
+        
         for(String estadosCurso1 : Curso.estadosCurso) {
             if (estadosCurso1.equals(estado)) {
                 this.estadoCurso = estado;
+                perteneceEstados = true;
             }
+        }
+        
+        if(!perteneceEstados){
+            //new EstadoNoValidoException enve;
         }
     }
 
