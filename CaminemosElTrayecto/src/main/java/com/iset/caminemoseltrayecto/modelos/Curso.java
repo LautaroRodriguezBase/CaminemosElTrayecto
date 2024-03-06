@@ -2,7 +2,7 @@ package com.iset.caminemoseltrayecto.modelos;
 
 import java.util.ArrayList;
 
-public class Curso {
+public class Curso{
 
     public static final int cantAlumnosMax = 15;
     private static final String [] estadosCurso = {"Propuesto", "Habilitado", "Cerrado", "Finalizado"};
@@ -69,7 +69,7 @@ public class Curso {
         }
         
         if(!perteneceEstados){
-            //new EstadoNoValidoException enve;
+             throw new EstadoNoValidoException("El estado de curso al que esta queriendo cambiar no es un estado valido");
         }
     }
 
