@@ -12,19 +12,18 @@ import com.iset.caminemoseltrayecto.visual.Sancionable;
 
 public class CaminemosElTrayecto {
 
-    private String nombre;// no se para que culo es esto
+    //private String nombre;// no se para que culo es esto
 
-    private ArrayList<Alumno> alumnos;
-    private ArrayList<Docente> docentes;
-    private ArrayList<Curso> cursos;
-    private ArrayList<User> usuarios;
+    private static ArrayList<Alumno> alumnos;
+    private static ArrayList<Docente> docentes;
+    private static ArrayList<Curso> cursos;
+    private static ArrayList<User> usuarios;
 
     private Admin admin;
 
-    public static void main(String[] args) {
-        LogIn li = new LogIn();
-        li.setVisible(true);
-        li.setLocationRelativeTo(null);
+    public static void main(String[] args) {//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+        new LogIn().setVisible(true);
+        //li.setLocationRelativeTo(null);
     }
 
     //creo que todas las funciones deberian ser static para invocarlas desde otro archivo
@@ -50,7 +49,7 @@ public class CaminemosElTrayecto {
         Estos archivos deberian estar en carpetas separadas.
         */
         
-        for(User u : this.usuarios){
+        for(User u : CaminemosElTrayecto.usuarios){
             if(u.getUserName().equals(uName) && u.getUserPass().equals(uPass)){
                 return u;
             }
@@ -59,26 +58,26 @@ public class CaminemosElTrayecto {
         throw new UnsupportedOperationException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
     }
 
-    public static ArrayList verCursosDisponibles(Alumno a){
+    public static ArrayList<Curso> verCursosDisponibles(Alumno a){
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
         
-        for(Curso c : this.cursos){
+        for(Curso c : CaminemosElTrayecto.cursos){
             Curso [] cursosPrevios = c.getCursosPrevios();
             
             switch(cursosPrevios.length){
-                case 0:
-                    cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
-                    break;
-                case 1:
+                case 0 -> cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
+                
+                case 1 -> {
                     if(a.getCursosAprobados().contains(cursosPrevios[0])){
                         cursosDisponibles.add(c);
                     }
-                    break;
-                case 2:
+                }
+                
+                case 2 -> {
                     if(a.getCursosAprobados().contains(cursosPrevios[0]) && a.getCursosAprobados().contains(cursosPrevios[1])){
                         cursosDisponibles.add(c);
                     }
-                    break;
+                }
             }
         }
         
@@ -134,11 +133,7 @@ public class CaminemosElTrayecto {
     public static boolean ingresar(String tfU, String tfP){
         
         if(tfU.equals("Admin") && tfP.equals("1234")){
-
-            AdminFrame af = new AdminFrame();
-            af.setVisible(true);
-            af.setLocationRelativeTo(null);
-
+            new AdminFrame(new Admin(tfU, tfP)).setVisible(true);
             return true;
         }else{// teoricamente aca deberia lanzar una excepcion
             return false;
@@ -147,7 +142,7 @@ public class CaminemosElTrayecto {
 
     public static void changePass(User u, String pass){
         if(!pass.equals("") && pass.length() >= 4){
-            u.changePass(pass);
+            u.setUserPass(pass);
         }else{
             //lanza una excepcion
         }
