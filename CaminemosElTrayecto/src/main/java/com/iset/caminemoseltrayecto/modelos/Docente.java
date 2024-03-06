@@ -1,12 +1,13 @@
 package com.iset.caminemoseltrayecto.modelos;
 
+import com.iset.caminemoseltrayecto.visual.AdministradorCurso;
 import com.iset.caminemoseltrayecto.visual.Reseteable;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
 import com.iset.caminemoseltrayecto.visual.DocenteFrame;
 
 import java.util.ArrayList;
 
-public class Docente extends User implements Sancionable, Reseteable{
+public class Docente extends User implements Sancionable, Reseteable, AdministradorCurso{
 
     private String nombre, apellido, dni, numTelefono = "";
     
@@ -59,6 +60,12 @@ public class Docente extends User implements Sancionable, Reseteable{
 
     public void addCurso(Curso curso) {
         cursosCreados.add(curso);
+    }
+    
+    @Override
+    public void cambiarEstadoDelCurso(Curso c, String estado){
+    //Creo que no se necesita
+        c.cambiarEstado(estado);
     }
     
     //Sancionable

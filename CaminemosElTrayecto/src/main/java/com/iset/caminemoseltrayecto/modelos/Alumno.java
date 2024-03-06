@@ -71,6 +71,17 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
         this.estado = estado;
     }
     
+    public void addCursoAprobado(Curso c){
+        //Cada cambio de datos de los archivos van a necesitar excepciones
+    }
+    
+    public void addCursoInscripto(Curso c){
+        
+    }
+    
+    public void removeCursoInscripto(Curso c){
+        
+    }
     
     
     //Sancionable
