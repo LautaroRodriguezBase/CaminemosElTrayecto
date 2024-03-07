@@ -5,6 +5,7 @@ import com.iset.caminemoseltrayecto.modelos.Admin;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
 import com.iset.caminemoseltrayecto.modelos.Docente;
 import com.iset.caminemoseltrayecto.modelos.User;
+import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
 import com.iset.caminemoseltrayecto.visual.AdminFrame;
 import java.util.ArrayList;
 import com.iset.caminemoseltrayecto.visual.LogIn;
@@ -50,7 +51,7 @@ public class CaminemosElTrayecto {
             }
         }
         //Crear excepciones para estos casos
-        throw new UnsupportedOperationException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
+        throw new UsuarioNoExisteException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
     }
     public static boolean ingresar(String tfU, String tfP){
         //Faltaria definir bien como funciona con la funcion "existe("
@@ -94,7 +95,9 @@ public class CaminemosElTrayecto {
     public static void addAlumnoAlCurso(Alumno a, Curso c) {
         if(a != null && c != null){
             c.addAlumno(a);// Tambien se tiene que actualizar el archivo
-        }// Lanzar una excepcion
+        }else{
+            throw new NullPointerException("El curso y/o el alumno que a ingresado no es valido");
+        }
     }
     
     public static ArrayList<Curso> verCursosDisponibles(Alumno a){
