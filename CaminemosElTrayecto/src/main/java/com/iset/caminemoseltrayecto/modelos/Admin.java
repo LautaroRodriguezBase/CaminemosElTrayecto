@@ -18,17 +18,27 @@ public class Admin extends User implements AdministradorCurso {
     }
 
     public void addAlumno(Alumno a){
-        //ademas debe guardarlo en el archivo y lanzar una excepcion en caso de fallar
-        this.alumnos.add(a);
+        if(a != null){
+            alumnos.add(a);
+        }else{
+            throw new NullPointerException("El alumno que a ingresado no es valido");
+        }
     }
 
     public void addDocente(Docente d){
-        //ademas debe guardarlo en el archivo y lanzar una excepcion en caso de fallar
-        this.docentes.add(d);
+        if(d != null){
+            docentes.add(d);
+        }else{
+            throw new NullPointerException("El alumno que a ingresado no es valido");
+        }
     }
 
     public void sancionPara(Sancionable s){
-        s.sancionar();
+        if(s != null){
+            s.sancionar();
+        }else{
+            throw new NullPointerException("El usuario que a ingresado no es valido");
+        }
     }
 
     //Implementa de Administrador de curso
