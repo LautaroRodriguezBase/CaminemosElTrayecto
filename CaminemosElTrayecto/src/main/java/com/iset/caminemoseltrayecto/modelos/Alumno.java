@@ -73,7 +73,7 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
     
     public void addCursoAprobado(Curso c){
         if(c != null){
-            cursosAprobados.add(c);
+            cursosAprobados.add(c);//faltaria cambiar los array list por una lista que no permita repetidos
         }else{
             throw new NullPointerException("El curso que a ingresado no es valido");
         }
