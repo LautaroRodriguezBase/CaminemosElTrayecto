@@ -3,6 +3,7 @@ package com.iset.caminemoseltrayecto;
 import com.iset.caminemoseltrayecto.modelos.Curso;
 import com.iset.caminemoseltrayecto.modelos.Admin;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
+import com.iset.caminemoseltrayecto.modelos.ContraseñaInvalidaException;
 import com.iset.caminemoseltrayecto.modelos.Docente;
 import com.iset.caminemoseltrayecto.modelos.User;
 import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
@@ -139,7 +140,7 @@ public class CaminemosElTrayecto {
         if(!pass.equals("") && pass.length() >= 4){
             u.setUserPass(pass);
         }else{
-            //lanza una excepcion
+            throw new ContraseñaInvalidaException("La contraseña que a ingresado es invalida");
         }
     }
     
