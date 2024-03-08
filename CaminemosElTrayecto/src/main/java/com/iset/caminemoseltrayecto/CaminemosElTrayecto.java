@@ -1,5 +1,14 @@
 package com.iset.caminemoseltrayecto;
 
+import java.io.EOFException;
+import java.io.IOException;
+
+import java.io.FileOutputStream;
+import java.io.FileInputStream;
+
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import com.iset.caminemoseltrayecto.modelos.Curso;
 import com.iset.caminemoseltrayecto.modelos.Admin;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
@@ -11,21 +20,26 @@ import com.iset.caminemoseltrayecto.visual.AdminFrame;
 import java.util.ArrayList;
 import com.iset.caminemoseltrayecto.visual.LogIn;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
+import java.io.File;
 
 public class CaminemosElTrayecto {
+    private static FileOutputStream fileOut;
+    private static ObjectOutputStream output;
 
+    private static FileInputStream fileIn;
+    private static ObjectInputStream input;
+    
     //private String nombre;// no se para que culo es esto
 
-    private static ArrayList<Alumno> alumnos;
-    private static ArrayList<Docente> docentes;
-    private static ArrayList<Curso> cursos;
-    private static ArrayList<User> usuarios;
+    private static ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+    private static ArrayList<Docente> docentes = new ArrayList<Docente>();
+    private static ArrayList<Curso> cursos = new ArrayList<Curso>();
+    private static ArrayList<User> usuarios = new ArrayList<User>();
 
-    private Admin admin;
+    private static Admin admin;
 
-    public static void main(String[] args) {//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+    public static void main(String[] args) throws IOException {//Ademas aca deberia cargar a todos los usuarios, cursos y demas
         new LogIn().setVisible(true);
-        //li.setLocationRelativeTo(null);
     }
 
     //creo que todas las funciones deberian ser static para invocarlas desde otro archivo
@@ -37,7 +51,19 @@ public class CaminemosElTrayecto {
      Es para tener una referencia
      */
     // Funciones del Controlador
-    public static User existe(String uName, String uPass) {
+    public static User existe(String uName, String uPass) throws IOException, ClassNotFoundException {
+        User us = readInFile();
+        CaminemosElTrayecto.usuarios.add(us);//Lee el admin
+        
+        for(Docente d : readInFileD("docentes.dat")){
+            User nU = d;
+            CaminemosElTrayecto.usuarios.add(nU);
+        }
+        
+        for(Alumno a : readInFileA("alumnos.dat")){
+            User nU = a;
+            CaminemosElTrayecto.usuarios.add(nU);
+        }
         /*
         Antes de eso tiene que llenar el array de usuarios leyendolo del archivo.
         Para eso tiene que haber un archivo con todas las opciones, de usuarios, de almnos, etc.
@@ -45,22 +71,37 @@ public class CaminemosElTrayecto {
         En caso de fallar levanta el original, levanta el de respaldo, elimina al original, y lo recrea de nuevo.
         Estos archivos deberian estar en carpetas separadas.
         */
-        
+        boolean userExist = false;
         for(User u : CaminemosElTrayecto.usuarios){
             if(u.getUserName().equals(uName) && u.getUserPass().equals(uPass)){
+                userExist = true;// creo que no es tan necesario porque el return corta la ejecucion
                 return u;
             }
         }
-        //Crear excepciones para estos casos
-        throw new UsuarioNoExisteException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
+        if(!userExist){
+            throw new UsuarioNoExisteException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
+        }
+        return null;
     }
-    public static boolean ingresar(String tfU, String tfP){
-        //Faltaria definir bien como funciona con la funcion "existe("
-        if(tfU.equals("Admin") && tfP.equals("1234")){
-            new AdminFrame(new Admin(tfU, tfP)).setVisible(true);
-            return true;
-        }else{// teoricamente aca deberia lanzar una excepcion
-            return false;
+    public static boolean ingresar(String tfU, String tfP) throws IOException, ClassNotFoundException{
+        try{
+            User u = existe(tfU, tfP);
+            
+            if(u.esAdmin(u)){
+                Admin a = (Admin) u;
+                a.mostrarVentana();
+                return true;
+            }else if(u.esDocente(u)){
+                Docente d = (Docente) u;
+                d.mostrarVentana();
+                return true;
+            }else{
+                Alumno a = (Alumno) u;
+                a.mostrarVentana();
+                return true;
+            }
+        }catch(UsuarioNoExisteException userNotFound){
+            throw new UsuarioNoExisteException("No existe el usuario");//Crear un archivo de idiomas para los Strings y demas
         }
     }
             //Esta pertenece al Controlador
@@ -72,7 +113,120 @@ public class CaminemosElTrayecto {
         }
         return cursosConEstadoEn;
     }
+        //Solo es necesario escribir users y cursos
 
+    /**
+     *
+     * @param archivo
+     * @param list
+     * @throws IOException
+     */
+    public static <T> void writeInFile(String archivo, ArrayList<T> list) throws IOException{
+        try{
+             fileOut = new FileOutputStream(archivo);
+             output = new ObjectOutputStream(fileOut);
+             
+             if (output != null) {
+                output.writeObject(list);
+                output.close();
+            }
+        }catch(IOException e){
+            System.out.println("No anduvo writeInFile\n" + e);//mandarle a la visual para que muestre algo
+        }finally{
+            if (output != null) {
+                output.close();
+            }
+        }
+    }
+
+        //lee los users y cursos
+
+    /**
+     *
+     * @param <T>
+     * @param archivo
+     * @return
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Alumno> readInFileA(String archivo) throws IOException, ClassNotFoundException{
+        try{
+            fileIn = new FileInputStream(archivo);
+            input = new ObjectInputStream(fileIn);
+             
+            if (input != null) {
+                return (ArrayList<Alumno>)input.readObject();
+            }
+
+        }catch(EOFException e){
+            System.out.println("No anduvo readInFile\n" + e);
+        }finally{
+            if (input != null) {
+                input.close();
+            }
+        }
+        return null;
+    }
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Docente> readInFileD(String archivo) throws IOException, ClassNotFoundException{
+        try{
+            fileIn = new FileInputStream(archivo);
+            input = new ObjectInputStream(fileIn);
+             
+            if (input != null) {
+                return (ArrayList<Docente>)input.readObject();
+            }
+
+        }catch(EOFException e){
+            System.out.println("No anduvo readInFile\n" + e);
+        }finally{
+            if (input != null) {
+                input.close();
+            }
+        }
+        return null;
+    }
+    @SuppressWarnings("unchecked")
+    public static ArrayList<Curso> readInFileC(String archivo) throws IOException, ClassNotFoundException{
+        try{
+            fileIn = new FileInputStream(archivo);
+            input = new ObjectInputStream(fileIn);
+             
+            if (input != null) {
+                return (ArrayList<Curso>)input.readObject();
+            }
+
+        }catch(EOFException e){
+            System.out.println("No anduvo readInFile\n" + e);
+        }finally{
+            if (input != null) {
+                input.close();
+            }
+        }
+        return null;
+    }
+    
+    
+        //Lee el archivo de admin
+    public static User readInFile() throws IOException, ClassNotFoundException{
+        try{
+            fileIn = new FileInputStream("admin.dat");
+            input = new ObjectInputStream(fileIn);
+             
+            if (input != null) {
+                return (User) input.readObject();
+            }
+
+        }catch(EOFException e){
+            System.out.println("No anduvo 131");
+        }finally{
+            if (input != null) {
+                input.close();
+            }
+        }
+        return null;
+    }
     // Funcionesd del Admin
     public static void habilitarCurso(Curso c){//la ejecuta el administrador.
                                                //Deberia tambien el Docente pero la visual deberia mostrarle solo los cerrados

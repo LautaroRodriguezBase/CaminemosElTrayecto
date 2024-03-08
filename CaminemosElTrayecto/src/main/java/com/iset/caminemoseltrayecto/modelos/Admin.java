@@ -4,9 +4,11 @@ import com.iset.caminemoseltrayecto.visual.AdministradorCurso;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
 import com.iset.caminemoseltrayecto.visual.AdminFrame;
 
+import java.io.Serializable;
+
 import java.util.ArrayList;
 
-public class Admin extends User implements AdministradorCurso {
+public class Admin extends User implements AdministradorCurso, Serializable{
 
     //private static final int userType = 0;
 

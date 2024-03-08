@@ -20,5 +20,9 @@ public class UsuarioNoExisteException extends RuntimeException{
     public UsuarioNoExisteException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
     }
-    
+    @Override
+    public String toString(){
+        
+        return "No existe el usuario";
+    }
 }

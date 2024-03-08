@@ -1,8 +1,12 @@
 package com.iset.caminemoseltrayecto.visual;
 
 import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
+import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
 import java.awt.Color;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 
@@ -191,15 +195,22 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     private javax.swing.JTextField tfUserPass;
     // End of variables declaration//GEN-END:variables
     
-    void ingresar(){
+    void ingresar() throws IOException, ClassNotFoundException{
         Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
         String tfU = tfUserName.getText();
         String tfP = tfUserPass.getText();
         
         // teoricamente todo esto deberia estar en un TRY CATCH
         if(!(tfU.equals("")) && !(tfP.equals(""))){
-            if(CaminemosElTrayecto.ingresar(tfU, tfP)){
-                this.setVisible(false);
+            try{
+                if(CaminemosElTrayecto.ingresar(tfU, tfP)){
+                    this.setVisible(false);
+                }
+            }catch(UsuarioNoExisteException userNotFound){
+                lMsjDeIngreso.setText(userNotFound.toString());
+                tfUserName.requestFocusInWindow();
+                tfUserName.setBorder(borderRed);
+                tfUserPass.setBorder(borderRed);
             }
         }else{
             lMsjDeIngreso.setText("No puedes tener campos vacios.");
@@ -213,7 +224,13 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     @Override
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == btnIngresar){
-            ingresar();
+            try {
+                ingresar();
+            } catch (IOException ex) {
+                Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
     
@@ -227,8 +244,17 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 tfUserPass.setBorder(borderGrey);
                 break;
             case KeyEvent.VK_ENTER:
-                ingresar();
+            {
+                try {
+                    ingresar();
+                } catch (IOException ex) {
+                    Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(LogIn.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
                 break;
+
         }
     }
     @Override

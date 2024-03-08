@@ -1,6 +1,8 @@
 package com.iset.caminemoseltrayecto.modelos;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable{
 
     private String userName, userPass;
 
