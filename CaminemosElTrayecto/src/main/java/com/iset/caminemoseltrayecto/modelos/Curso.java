@@ -42,7 +42,11 @@ public class Curso{
         return cursosPrevios;
     }
     public void addAlumno(Alumno a) {
-        alumnos.add(a);
+        if(a != null){
+            alumnos.add(a);
+        }else{
+            throw new NullPointerException("El alumno que a ingresado no es valido");
+        }
     }
 
     public void setNombre(String nombre) {

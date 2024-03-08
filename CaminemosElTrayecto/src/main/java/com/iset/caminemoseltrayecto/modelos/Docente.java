@@ -59,7 +59,11 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     }
 
     public void addCurso(Curso curso) {
-        cursosCreados.add(curso);
+        if(curso != null){
+            cursosCreados.add(curso);
+        }else{
+            throw new NullPointerException("El curso que a ingresado no es valido");
+        }
     }
     
     @Override
