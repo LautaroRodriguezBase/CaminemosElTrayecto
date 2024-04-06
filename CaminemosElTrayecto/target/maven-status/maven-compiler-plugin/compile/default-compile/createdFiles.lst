@@ -7,11 +7,9 @@ com\iset\caminemoseltrayecto\visual\AlumnoFrame.class
 com\iset\caminemoseltrayecto\modelos\User.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame$2.class
 com\iset\caminemoseltrayecto\modelos\UsuarioNoExisteException.class
-com\iset\caminemoseltrayecto\modelos\ContraseñaInvalidaException.class
 com\iset\caminemoseltrayecto\visual\AdministradorCurso.class
 com\iset\caminemoseltrayecto\visual\LogIn$2.class
 com\iset\caminemoseltrayecto\visual\AlumnoFrame$1.class
-com\iset\caminemoseltrayecto\modelos\Docente.class
 com\iset\caminemoseltrayecto\modelos\Admin.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame$1.class
 com\iset\caminemoseltrayecto\modelos\EstadoNoValidoException.class

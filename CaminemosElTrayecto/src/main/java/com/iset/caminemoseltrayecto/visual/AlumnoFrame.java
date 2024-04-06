@@ -17,6 +17,7 @@ public class AlumnoFrame extends javax.swing.JFrame {
      */
     public AlumnoFrame(Alumno alumno) {
         this.alumno = alumno;
+        this.setTitle("Bienvenido " + this.alumno.getNombre() + " " + this.alumno.getApellido());
         initComponents();
     }
 

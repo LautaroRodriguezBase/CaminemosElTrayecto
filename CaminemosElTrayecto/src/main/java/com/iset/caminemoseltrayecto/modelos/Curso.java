@@ -1,8 +1,9 @@
 package com.iset.caminemoseltrayecto.modelos;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Curso{
+public class Curso implements Serializable{
 
     public static final int cantAlumnosMax = 15;
     private static final String [] estadosCurso = {"Propuesto", "Habilitado", "Cerrado", "Finalizado"};
@@ -15,10 +16,9 @@ public class Curso{
     private Docente titular;
     private Curso[] cursosPrevios;
 
-    public Curso(String nombre, String descripcion, String estado, Docente titular, Curso[] cursosPrevios) {
+    public Curso(String nombre, String descripcion, Docente titular, Curso[] cursosPrevios) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.estadoCurso = estado;
         this.titular = titular;
         this.cursosPrevios = cursosPrevios;
     }
@@ -62,7 +62,7 @@ public class Curso{
         this.titular = titular;
     }
 
-    public void cambiarEstado(String estado) {
+    public void cambiarEstado(String estado) throws EstadoNoValidoException {
         boolean perteneceEstados = false;
         
         for(String estadosCurso1 : Curso.estadosCurso) {

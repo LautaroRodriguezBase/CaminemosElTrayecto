@@ -12,8 +12,8 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
 
     private int estado = 0;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
 
-    private ArrayList<Curso> cursosAprobados;
-    private ArrayList<Curso> cursosInscriptos;
+    private ArrayList<Curso> cursosAprobados = new ArrayList<Curso>();
+    private ArrayList<Curso> cursosInscriptos = new ArrayList<Curso>();
 
     public Alumno(String uName, String uPass, String nombre, String apellido, String dni, String numTelefono) {
         super(uName, uPass);

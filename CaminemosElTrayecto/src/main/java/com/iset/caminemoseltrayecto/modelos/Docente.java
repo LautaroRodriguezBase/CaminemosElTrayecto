@@ -4,8 +4,11 @@ import com.iset.caminemoseltrayecto.visual.AdministradorCurso;
 import com.iset.caminemoseltrayecto.visual.Reseteable;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
 import com.iset.caminemoseltrayecto.visual.DocenteFrame;
+import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Docente extends User implements Sancionable, Reseteable, AdministradorCurso{
 
@@ -13,7 +16,7 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     
     private int estado = 0;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
     
-    private ArrayList<Curso> cursosCreados;
+    private ArrayList<Curso> cursosCreados = new ArrayList<Curso>();
 
     public Docente(String uName, String uPass, String nombre, String apellido, String dni) {
         super(uName, uPass);
@@ -60,14 +63,15 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
 
     public void addCurso(Curso curso) {
         if(curso != null){
-            cursosCreados.add(curso);
+            
+            this.cursosCreados.add(curso);
         }else{
             throw new NullPointerException("El curso que a ingresado no es valido");
         }
     }
     
     @Override
-    public void cambiarEstadoDelCurso(Curso c, String estado){
+    public void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException{
     //Creo que no se necesita
         c.cambiarEstado(estado);
     }
@@ -86,7 +90,13 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     //DD Heredado de User
     @Override
     public void mostrarVentana(){
-        new DocenteFrame(this).setVisible(true);
+        try {
+            new DocenteFrame(this).setVisible(true);
+        } catch (IOException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     @Override
     public boolean esAdmin(User u) {

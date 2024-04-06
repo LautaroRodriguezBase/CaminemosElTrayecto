@@ -14,6 +14,7 @@ import com.iset.caminemoseltrayecto.modelos.Admin;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
 import com.iset.caminemoseltrayecto.modelos.ContraseñaInvalidaException;
 import com.iset.caminemoseltrayecto.modelos.Docente;
+import com.iset.caminemoseltrayecto.modelos.EstadoNoValidoException;
 import com.iset.caminemoseltrayecto.modelos.User;
 import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
 import com.iset.caminemoseltrayecto.visual.AdminFrame;
@@ -28,17 +29,15 @@ public class CaminemosElTrayecto {
 
     private static FileInputStream fileIn;
     private static ObjectInputStream input;
-    
-    //private String nombre;// no se para que culo es esto
 
-    private static ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
-    private static ArrayList<Docente> docentes = new ArrayList<Docente>();
     private static ArrayList<Curso> cursos = new ArrayList<Curso>();
     private static ArrayList<User> usuarios = new ArrayList<User>();
+    private static ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
+    private static ArrayList<Docente> docentes = new ArrayList<Docente>();
 
     private static Admin admin;
 
-    public static void main(String[] args) throws IOException {//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+    public static void main(String[] args){//Ademas aca deberia cargar a todos los usuarios, cursos y demas
         new LogIn().setVisible(true);
     }
 
@@ -51,11 +50,16 @@ public class CaminemosElTrayecto {
      Es para tener una referencia
      */
     // Funciones del Controlador
+    public static ArrayList<Curso> getCursos() throws IOException, ClassNotFoundException{
+        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
+        return CaminemosElTrayecto.cursos;
+    }
     public static User existe(String uName, String uPass) throws IOException, ClassNotFoundException {
         User us = readInFile();
         CaminemosElTrayecto.usuarios.add(us);//Lee el admin
         
         for(Docente d : readInFileD("docentes.dat")){
+            CaminemosElTrayecto.docentes.add(d);
             User nU = d;
             CaminemosElTrayecto.usuarios.add(nU);
         }
@@ -140,7 +144,6 @@ public class CaminemosElTrayecto {
     }
 
         //lee los users y cursos
-
     /**
      *
      * @param <T>
@@ -195,6 +198,8 @@ public class CaminemosElTrayecto {
              
             if (input != null) {
                 return (ArrayList<Curso>)input.readObject();
+            }else{
+                return null;
             }
 
         }catch(EOFException e){
@@ -206,8 +211,6 @@ public class CaminemosElTrayecto {
         }
         return null;
     }
-    
-    
         //Lee el archivo de admin
     public static User readInFile() throws IOException, ClassNotFoundException{
         try{
@@ -227,13 +230,14 @@ public class CaminemosElTrayecto {
         }
         return null;
     }
-    // Funcionesd del Admin
-    public static void habilitarCurso(Curso c){//la ejecuta el administrador.
+    
+// Funcionesd del Admin
+    public static void habilitarCurso(Curso c) throws EstadoNoValidoException{//la ejecuta el administrador.
                                                //Deberia tambien el Docente pero la visual deberia mostrarle solo los cerrados
         c.cambiarEstado("Habilitado");//el estado del curso deberia ser un int, y de ahi asociarlo a un Stirng
     }
         //Medio al pedo la de arriba si basicamente lo hace la de abajo. El nombre de la de arriba tiene que ir en el btn de la visual
-    public static void cambiarEstadoDelCurso(Curso c, String estado) {
+    public static void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException {
         c.cambiarEstado(estado);
     }
     public static void blanquearPass(User u, String DNI){//hay dos opciones, o se pone el DNI como atributo de USER, o se pasa el DNI como parametro
@@ -298,15 +302,26 @@ public class CaminemosElTrayecto {
         }
     }
     
-// Funciones del Docente
-    public static void addCurso(Curso c){//No se si es a los docentes, al alumno, a la propia universidad
-        //lo dejo como a la propia universidad, calculo que será llamada por otra funcion que complemente
+    // Funciones del Docente
+    public static void addCurso(Docente d, Curso c) throws IOException, ClassNotFoundException{//No se si es a los docentes, al alumno, a la propia universidad
+        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
+        CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
         cursos.add(c);
+        d.addCurso(c);
+        int posDocente = -1;
+        for(int i = 0; i < CaminemosElTrayecto.docentes.size();i++){
+            if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){
+                posDocente = i;
+            }
+        }
+        CaminemosElTrayecto.docentes.get(posDocente).addCurso(c);
+        CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+        CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
     }
     public static void proponerCurso(Docente d, Curso c){//la ejecuta el docente
         d.addCurso(c); //no deberia retornar nada
     }
-    public static void finalizarCurso(Curso c, ArrayList<Alumno> alumnosAprobados){//El array list que recibe es de los alumnos aprobados
+    public static void finalizarCurso(Curso c, ArrayList<Alumno> alumnosAprobados) throws EstadoNoValidoException{//El array list que recibe es de los alumnos aprobados
         c.cambiarEstado("Finalizado");
         for(Alumno a : alumnosAprobados){
             a.addCursoAprobado(c);

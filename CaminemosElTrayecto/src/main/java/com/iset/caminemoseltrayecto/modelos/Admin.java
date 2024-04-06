@@ -45,7 +45,7 @@ public class Admin extends User implements AdministradorCurso, Serializable{
 
     //Implementa de Administrador de curso
     @Override
-    public void cambiarEstadoDelCurso(Curso c, String estado){
+    public void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException{
     //Creo que no se necesita
         c.cambiarEstado(estado);
     }

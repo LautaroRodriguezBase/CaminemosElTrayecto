@@ -1,6 +1,6 @@
 package com.iset.caminemoseltrayecto.modelos;
 
-public class EstadoNoValidoException extends RuntimeException{
+public class EstadoNoValidoException extends Exception{
 
     public EstadoNoValidoException() {
     }

@@ -4,22 +4,51 @@
  */
 package com.iset.caminemoseltrayecto.visual;
 
+import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
 import com.iset.caminemoseltrayecto.modelos.Docente;
-
+import com.iset.caminemoseltrayecto.modelos.Curso;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
 /**
  *
  * @author lauti
  */
-public class DocenteFrame extends javax.swing.JFrame {
+public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
     private Docente docente;//Probablemente Final
+    private final Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));//deneria ser static
 
     /**
      * Creates new form DocenteFrame
      */
-    public DocenteFrame(Docente docente) {
+    public DocenteFrame(Docente docente) throws IOException, ClassNotFoundException {
         this.docente = docente;
-        initComponents();
+        this.setTitle("Bienvenido " + this.docente.getApellido() + ", " + this.docente.getNombre());
+        //this.setLocationRelativeTo(null);
+        
+        Curso [] cursosD = new Curso[CaminemosElTrayecto.getCursos().size() + 1];
+        cursosD[0] = null;
+        System.out.println(cursosD.length + " / " + CaminemosElTrayecto.getCursos().size());
+        if(cursosD.length > 1){
+            for(int i = 1; i < cursosD.length; i++){
+                cursosD[i] = CaminemosElTrayecto.getCursos().get(i-1);
+            }
+        }
+        initComponents(cursosD);
+        
+        bCrearCurso.addActionListener(this);
+        
+        if(cursosD.length > 1){
+            for(int i = 1; i < cursosD.length; i++){
+                taDescripcion.setText(taDescripcion.getText() + "\n" + cursosD[i].getNombre());
+            }
+        }
     }
 
     /**
@@ -33,26 +62,38 @@ public class DocenteFrame extends javax.swing.JFrame {
 
         lTitleDocente = new javax.swing.JLabel();
         bCrearCurso = new javax.swing.JButton();
-        cbCursosPropuestos = new javax.swing.JComboBox<>();
-        CursosAprobados = new javax.swing.JComboBox<>();
-        CursosFinalizados = new javax.swing.JComboBox<>();
+        cbCursosPrevios1 = new javax.swing.JComboBox<>();
+        cbCursosPrevios2 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        tfNombreCurso = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        taDescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lTitleDocente.setText("Docente");
 
         bCrearCurso.setText("Add Curso");
-        bCrearCurso.addActionListener(new java.awt.event.ActionListener() {
+
+        cbCursosPrevios1.setModel(new javax.swing.DefaultComboBoxModel<>(cursosD));
+        cbCursosPrevios1.setSelectedItem(Curso);
+
+        cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbCursosPrevios2.setSelectedItem(Curso);
+
+        jLabel1.setText("Curso Nuevo");
+
+        tfNombreCurso.setText("Nombre");
+        tfNombreCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bCrearCursoActionPerformed(evt);
+                tfNombreCursoActionPerformed(evt);
             }
         });
 
-        cbCursosPropuestos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        CursosAprobados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        CursosFinalizados.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        taDescripcion.setColumns(20);
+        taDescripcion.setRows(5);
+        taDescripcion.setText("Descripcion");
+        jScrollPane1.setViewportView(taDescripcion);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -62,14 +103,25 @@ public class DocenteFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lTitleDocente)
-                    .addComponent(bCrearCurso)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbCursosPropuestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CursosAprobados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(CursosFinalizados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(954, Short.MAX_VALUE))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(tfNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(34, 34, 34))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(bCrearCurso)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbCursosPrevios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbCursosPrevios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(549, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -77,21 +129,29 @@ public class DocenteFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lTitleDocente)
                 .addGap(18, 18, 18)
-                .addComponent(bCrearCurso)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbCursosPropuestos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CursosAprobados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CursosFinalizados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(572, Short.MAX_VALUE))
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(tfNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bCrearCurso))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(cbCursosPrevios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCursosPrevios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(352, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bCrearCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCrearCursoActionPerformed
+    private void tfNombreCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreCursoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bCrearCursoActionPerformed
+    }//GEN-LAST:event_tfNombreCursoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,16 +183,52 @@ public class DocenteFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {//Dudo que se ejecute
             private Docente docente;
             public void run() {
-                new DocenteFrame(this.docente).setVisible(true);
+                try {
+                    new DocenteFrame(this.docente).setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> CursosAprobados;
-    private javax.swing.JComboBox<String> CursosFinalizados;
     private javax.swing.JButton bCrearCurso;
-    private javax.swing.JComboBox<String> cbCursosPropuestos;
+    private javax.swing.JComboBox<Curso> cbCursosPrevios1;
+    private javax.swing.JComboBox<Curso> cbCursosPrevios2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lTitleDocente;
+    private javax.swing.JTextArea taDescripcion;
+    private javax.swing.JTextField tfNombreCurso;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(e.getSource() == bCrearCurso){
+            System.out.println("Boton add presionado");
+            Curso [] cursosPrevios = {null, null};
+            if(cbCursosPrevios1.getSelectedItem() != null){
+                cursosPrevios[0] = (Curso)cbCursosPrevios1.getSelectedItem();
+            }
+            if(cbCursosPrevios2.getSelectedItem() != null){
+                cursosPrevios[1] = (Curso)cbCursosPrevios2.getSelectedItem();
+            }
+
+            try {
+                System.out.println("try");
+                Curso cursosPrev = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);
+                CaminemosElTrayecto.addCurso(this.docente, cursosPrev);
+                System.out.println("Fin try");
+            } catch (IOException ex) {
+                tfNombreCurso.setText("Error");
+                tfNombreCurso.setBorder(borderRed);
+                Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 }
