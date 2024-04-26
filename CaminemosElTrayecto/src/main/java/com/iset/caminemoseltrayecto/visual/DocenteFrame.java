@@ -34,7 +34,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         
         Curso [] cursosD = new Curso[CaminemosElTrayecto.getCursos().size() + 1];
         cursosD[0] = null;
-        System.out.println(cursosD.length + " / " + CaminemosElTrayecto.getCursos().size());
+
         if(cursosD.length > 1){
             for(int i = 1; i < cursosD.length; i++){
                 cursosD[i] = CaminemosElTrayecto.getCursos().get(i-1);
@@ -43,12 +43,6 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         initComponents(cursosD);
         
         bCrearCurso.addActionListener(this);
-        
-        if(cursosD.length > 1){
-            for(int i = 1; i < cursosD.length; i++){
-                taDescripcion.setText(taDescripcion.getText() + "\n" + cursosD[i].getNombre());
-            }
-        }
     }
 
     /**
