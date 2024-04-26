@@ -58,7 +58,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(Curso cursosD[]) {
 
         lTitleDocente = new javax.swing.JLabel();
         bCrearCurso = new javax.swing.JButton();
@@ -76,10 +76,10 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         bCrearCurso.setText("Add Curso");
 
         cbCursosPrevios1.setModel(new javax.swing.DefaultComboBoxModel<>(cursosD));
-        cbCursosPrevios1.setSelectedItem(Curso);
+        cbCursosPrevios1.setSelectedItem(cursosD[0]);
 
-        cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbCursosPrevios2.setSelectedItem(Curso);
+        cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(cursosD));
+        cbCursosPrevios2.setSelectedItem(cursosD[0]);
 
         jLabel1.setText("Curso Nuevo");
 
