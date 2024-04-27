@@ -123,4 +123,9 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
     public void resetPassword() {
         super.setUserPass(this.dni);
     }
+
+    @Override
+    public String toString() {
+        return nombre + ", " + apellido;
+    }
 }

@@ -113,4 +113,9 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     public void resetPassword() {
         super.setUserPass(this.dni);
     }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido;
+    }
 }

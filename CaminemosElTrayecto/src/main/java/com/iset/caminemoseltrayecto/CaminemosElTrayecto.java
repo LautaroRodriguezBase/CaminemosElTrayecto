@@ -37,7 +37,7 @@ public class CaminemosElTrayecto {
 
     private static Admin admin;
 
-    public static void main(String[] args){//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+    public static void main(String[] args) throws IOException{//Ademas aca deberia cargar a todos los usuarios, cursos y demas
         new LogIn().setVisible(true);
     }
 
@@ -156,60 +156,76 @@ public class CaminemosElTrayecto {
     public static ArrayList<Alumno> readInFileA(String archivo) throws IOException, ClassNotFoundException{
         try{
             fileIn = new FileInputStream(archivo);
+            if(fileIn.available() == 0){
+                writeInFile(archivo, new ArrayList<Alumno>());
+            }
             input = new ObjectInputStream(fileIn);
              
             if (input != null) {
                 return (ArrayList<Alumno>)input.readObject();
+            }else{
+                return new ArrayList<Alumno>();
             }
 
         }catch(EOFException e){
-            System.out.println("No anduvo readInFile\n" + e);
+            System.out.println("No anduvo readInFileA\n" + e);
+            return new ArrayList<Alumno>();
         }finally{
             if (input != null) {
                 input.close();
             }
         }
-        return null;
     }
     @SuppressWarnings("unchecked")
     public static ArrayList<Docente> readInFileD(String archivo) throws IOException, ClassNotFoundException{
         try{
             fileIn = new FileInputStream(archivo);
+            if(fileIn.available() == 0){
+                writeInFile(archivo, new ArrayList<Docente>());
+            }
             input = new ObjectInputStream(fileIn);
              
             if (input != null) {
                 return (ArrayList<Docente>)input.readObject();
+            }else{
+                return new ArrayList<Docente>();
             }
 
         }catch(EOFException e){
-            System.out.println("No anduvo readInFile\n" + e);
-        }finally{
+            System.out.println("No anduvo readInFileD\n" + e);
+            return new ArrayList<Docente>();
+        }
+        finally{
             if (input != null) {
                 input.close();
             }
         }
-        return null;
     }
     @SuppressWarnings("unchecked")
     public static ArrayList<Curso> readInFileC(String archivo) throws IOException, ClassNotFoundException{
+        
         try{
             fileIn = new FileInputStream(archivo);
+            if(fileIn.available() == 0){
+                writeInFile(archivo, new ArrayList<Curso>());
+            }
             input = new ObjectInputStream(fileIn);
              
             if (input != null) {
                 return (ArrayList<Curso>)input.readObject();
             }else{
-                return null;
+                return new ArrayList<Curso>();
             }
 
         }catch(EOFException e){
-            System.out.println("No anduvo readInFile\n" + e);
-        }finally{
+            System.out.println("No anduvo readInFileC\n" + e);
+            return new ArrayList<Curso>();
+        }
+        finally{
             if (input != null) {
                 input.close();
             }
         }
-        return null;
     }
         //Lee el archivo de admin
     public static User readInFile() throws IOException, ClassNotFoundException{
@@ -251,6 +267,9 @@ public class CaminemosElTrayecto {
     }
     
     // Funciones del Alumno
+    public static void addAlumno(Alumno a){
+        CaminemosElTrayecto.alumnos.add(a);
+    }
     public static void addAlumnoAlCurso(Alumno a, Curso c) {
         if(a != null && c != null){
             c.addAlumno(a);// Tambien se tiene que actualizar el archivo
@@ -303,6 +322,9 @@ public class CaminemosElTrayecto {
     }
     
     // Funciones del Docente
+    public static void addDocente(Docente d){
+        CaminemosElTrayecto.docentes.add(d);
+    }
     public static void addCurso(Docente d, Curso c) throws IOException, ClassNotFoundException{//No se si es a los docentes, al alumno, a la propia universidad
         CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
         CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
@@ -310,10 +332,10 @@ public class CaminemosElTrayecto {
         d.addCurso(c);
         int posDocente = -1;
         for(int i = 0; i < CaminemosElTrayecto.docentes.size();i++){
-            if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){
+            if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){//Creo que un contains hace lo mismo
                 posDocente = i;
             }
-        }
+        }//Habria que agregar un if que lance una excepcion si la posDocente es -1
         CaminemosElTrayecto.docentes.get(posDocente).addCurso(c);
         CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
         CaminemosElTrayecto.writeInFile("docentes.dat", docentes);

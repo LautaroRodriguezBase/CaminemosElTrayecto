@@ -4,6 +4,8 @@ import com.iset.caminemoseltrayecto.visual.AdministradorCurso;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
 import com.iset.caminemoseltrayecto.visual.AdminFrame;
 
+import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 public class Admin extends User implements AdministradorCurso, Serializable{
 
     //private static final int userType = 0;
-
+    //Los dos arrays list estan al pedo, deberia usar directamente los del Controlador
     private static ArrayList<Alumno> alumnos;
     private static ArrayList<Docente> docentes;
 
@@ -21,7 +23,7 @@ public class Admin extends User implements AdministradorCurso, Serializable{
 
     public void addAlumno(Alumno a){
         if(a != null){
-            alumnos.add(a);
+            CaminemosElTrayecto.addAlumno(a);
         }else{
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }
@@ -29,7 +31,7 @@ public class Admin extends User implements AdministradorCurso, Serializable{
 
     public void addDocente(Docente d){
         if(d != null){
-            docentes.add(d);
+            CaminemosElTrayecto.addDocente(d);
         }else{
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }

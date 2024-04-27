@@ -32,14 +32,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         this.setTitle("Bienvenido " + this.docente.getApellido() + ", " + this.docente.getNombre());
         //this.setLocationRelativeTo(null);
         
-        Curso [] cursosD = new Curso[CaminemosElTrayecto.getCursos().size() + 1];
-        cursosD[0] = null;
-
-        if(cursosD.length > 1){
-            for(int i = 1; i < cursosD.length; i++){
-                cursosD[i] = CaminemosElTrayecto.getCursos().get(i-1);
-            }
-        }
+        Curso cursosD[] = getCursosTotales();
         initComponents(cursosD);
         
         bCrearCurso.addActionListener(this);
@@ -198,7 +191,17 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextArea taDescripcion;
     private javax.swing.JTextField tfNombreCurso;
     // End of variables declaration//GEN-END:variables
+    public Curso[] getCursosTotales() throws IOException, ClassNotFoundException{
+        Curso [] cursosT = new Curso[((CaminemosElTrayecto.getCursos() == null)? 1 : CaminemosElTrayecto.getCursos().size() + 1)];
+        cursosT[0] = null;
 
+        if(cursosT.length > 1){
+            for(int i = 1; i < cursosT.length; i++){
+                cursosT[i] = CaminemosElTrayecto.getCursos().get(i-1);
+            }
+        }
+        return cursosT;
+    }
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == bCrearCurso){
@@ -213,8 +216,12 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
             try {
                 System.out.println("try");
-                Curso cursosPrev = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);
-                CaminemosElTrayecto.addCurso(this.docente, cursosPrev);
+                Curso cursoNuevo = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);
+                CaminemosElTrayecto.addCurso(this.docente, cursoNuevo);
+                
+                Curso cursosT[] = getCursosTotales();
+                cbCursosPrevios1.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
+                cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
                 System.out.println("Fin try");
             } catch (IOException ex) {
                 tfNombreCurso.setText("Error");

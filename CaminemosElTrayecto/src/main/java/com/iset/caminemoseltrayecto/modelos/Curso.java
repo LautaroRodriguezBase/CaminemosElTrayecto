@@ -81,4 +81,9 @@ public class Curso implements Serializable{
     public static String[] getEstadosCurso(){
         return Curso.estadosCurso;
     }
+
+    @Override
+    public String toString() {
+        return nombre + " con " + titular;
+    }
 }
