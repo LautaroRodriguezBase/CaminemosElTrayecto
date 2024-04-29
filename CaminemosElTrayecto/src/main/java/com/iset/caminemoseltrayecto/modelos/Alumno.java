@@ -15,7 +15,7 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
     private ArrayList<Curso> cursosAprobados = new ArrayList<Curso>();
     private ArrayList<Curso> cursosInscriptos = new ArrayList<Curso>();
 
-    public Alumno(String uName, String uPass, String nombre, String apellido, String dni, String numTelefono) {
+    public Alumno(String uName, String uPass, String nombre, String apellido, String dni, String numTelefono){// El nmero de cel esta de mas
         super(uName, uPass);
         this.nombre = nombre;
         this.apellido = apellido;

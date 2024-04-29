@@ -18,7 +18,7 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     
     private ArrayList<Curso> cursosCreados = new ArrayList<Curso>();
 
-    public Docente(String uName, String uPass, String nombre, String apellido, String dni) {
+    public Docente(String uName, String uPass, String nombre, String apellido, String dni){// La uPass esta de mas porque deberia ser el dni
         super(uName, uPass);
         this.nombre = nombre;
         this.apellido = apellido;
