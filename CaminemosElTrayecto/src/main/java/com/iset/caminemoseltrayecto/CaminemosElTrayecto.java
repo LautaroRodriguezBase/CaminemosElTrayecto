@@ -37,7 +37,11 @@ public class CaminemosElTrayecto {
 
     private static Admin admin;
 
-    public static void main(String[] args) throws IOException{//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+    public static void main(String[] args) throws IOException, ClassNotFoundException{//Ademas aca deberia cargar a todos los usuarios, cursos y demas
+        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
+        CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFileA("alumnos.dat");
+        CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
+
         new LogIn().setVisible(true);
     }
 
@@ -50,21 +54,20 @@ public class CaminemosElTrayecto {
      Es para tener una referencia
      */
     // Funciones del Controlador
-    public static ArrayList<Curso> getCursos() throws IOException, ClassNotFoundException{
-        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
+    public static ArrayList<Curso> getCursos(){
         return CaminemosElTrayecto.cursos;
     }
     public static User existe(String uName, String uPass) throws IOException, ClassNotFoundException {
         User us = readInFile();
         CaminemosElTrayecto.usuarios.add(us);//Lee el admin
         
-        for(Docente d : readInFileD("docentes.dat")){
+        for(Docente d : docentes/*readInFileD("docentes.dat")*/){
             CaminemosElTrayecto.docentes.add(d);
             User nU = d;
             CaminemosElTrayecto.usuarios.add(nU);
         }
         
-        for(Alumno a : readInFileA("alumnos.dat")){
+        for(Alumno a : alumnos/*readInFileA("alumnos.dat")*/){
             User nU = a;
             CaminemosElTrayecto.usuarios.add(nU);
         }
@@ -267,6 +270,9 @@ public class CaminemosElTrayecto {
     }
     
     // Funciones del Alumno
+    public static ArrayList<Alumno> getAlumnos(){
+        return CaminemosElTrayecto.alumnos;
+    }
     public static void addAlumno(Alumno a){
         CaminemosElTrayecto.alumnos.add(a);
     }
@@ -322,12 +328,17 @@ public class CaminemosElTrayecto {
     }
     
     // Funciones del Docente
+    public static ArrayList<Docente> getDocentes(){
+        return CaminemosElTrayecto.docentes;
+    }
     public static void addDocente(Docente d){
         CaminemosElTrayecto.docentes.add(d);
     }
     public static void addCurso(Docente d, Curso c) throws IOException, ClassNotFoundException{//No se si es a los docentes, al alumno, a la propia universidad
-        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
-        CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
+        /*  No deberia ser necesario por el tema de que ya se cargan con el programa en el main
+            CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
+            CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
+        */
         cursos.add(c);
         d.addCurso(c);
         int posDocente = -1;
