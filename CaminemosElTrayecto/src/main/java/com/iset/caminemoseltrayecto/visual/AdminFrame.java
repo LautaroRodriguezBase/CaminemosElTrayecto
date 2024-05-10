@@ -132,6 +132,11 @@ public class AdminFrame extends javax.swing.JFrame {
         });
 
         bHabilitarCurso.setText("Habilitar");
+        bHabilitarCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bHabilitarCursoActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Agregar Docente");
 
@@ -155,35 +160,26 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel11.setText("Telefono");
 
-        tfApellidoAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfApellidoAlumnoActionPerformed(evt);
-            }
-        });
-
-        tfDNIAlumno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDNIAlumnoActionPerformed(evt);
-            }
-        });
-
-        tfApellidoDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfApellidoDocenteActionPerformed(evt);
-            }
-        });
-
-        tfDNIDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfDNIDocenteActionPerformed(evt);
-            }
-        });
-
         bAddDocente.setText("addDocente");
+        bAddDocente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddDocenteActionPerformed(evt);
+            }
+        });
 
         bAddAlumno.setText("addAlumno");
+        bAddAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAddAlumnoActionPerformed(evt);
+            }
+        });
 
         bSalir.setText("Salir");
+        bSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalirActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("Alumnos");
 
@@ -335,21 +331,21 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_bSancionarActionPerformed
 
-    private void tfApellidoAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoAlumnoActionPerformed
+    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfApellidoAlumnoActionPerformed
+    }//GEN-LAST:event_bSalirActionPerformed
 
-    private void tfDNIAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDNIAlumnoActionPerformed
+    private void bHabilitarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHabilitarCursoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDNIAlumnoActionPerformed
+    }//GEN-LAST:event_bHabilitarCursoActionPerformed
 
-    private void tfApellidoDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfApellidoDocenteActionPerformed
+    private void bAddDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddDocenteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfApellidoDocenteActionPerformed
+    }//GEN-LAST:event_bAddDocenteActionPerformed
 
-    private void tfDNIDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDNIDocenteActionPerformed
+    private void bAddAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddAlumnoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tfDNIDocenteActionPerformed
+    }//GEN-LAST:event_bAddAlumnoActionPerformed
 
     /**
      * @param args the command line arguments

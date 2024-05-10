@@ -251,6 +251,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Habilitar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bHabilitarCursoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -312,14 +315,8 @@
     <Component class="javax.swing.JTextField" name="tfNombreAlumno">
     </Component>
     <Component class="javax.swing.JTextField" name="tfApellidoAlumno">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfApellidoAlumnoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfDNIAlumno">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDNIAlumnoActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfTelefonoAlumno">
     </Component>
@@ -328,29 +325,32 @@
     <Component class="javax.swing.JTextField" name="tfNombreDocente">
     </Component>
     <Component class="javax.swing.JTextField" name="tfApellidoDocente">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfApellidoDocenteActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="tfDNIDocente">
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDNIDocenteActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bAddDocente">
       <Properties>
         <Property name="text" type="java.lang.String" value="addDocente"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddDocenteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bAddAlumno">
       <Properties>
         <Property name="text" type="java.lang.String" value="addAlumno"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bAddAlumnoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="bSalir">
       <Properties>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSalirActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel12">
       <Properties>
