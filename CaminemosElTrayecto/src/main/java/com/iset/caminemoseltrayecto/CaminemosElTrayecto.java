@@ -38,11 +38,15 @@ public class CaminemosElTrayecto {
     private static Admin admin;
 
     public static void main(String[] args) throws IOException, ClassNotFoundException{//Ademas aca deberia cargar a todos los usuarios, cursos y demas
-        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
-        CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFileA("alumnos.dat");
-        CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
+        CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFile("cursos.dat");
+        CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFile("alumnos.dat");
+        CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFile("docentes.dat");
 
-        new LogIn().setVisible(true);
+        System.out.println(CaminemosElTrayecto.alumnos);
+        System.out.println(CaminemosElTrayecto.cursos);
+        System.out.println(CaminemosElTrayecto.docentes);
+                
+        //new LogIn().setVisible(true);
     }
 
     //creo que todas las funciones deberian ser static para invocarlas desde otro archivo
@@ -151,86 +155,37 @@ public class CaminemosElTrayecto {
      *
      * @param <T>
      * @param archivo
+     * @param clase
      * @return
      * @throws IOException
      * @throws ClassNotFoundException
      */
     @SuppressWarnings("unchecked")
-    public static ArrayList<Alumno> readInFileA(String archivo) throws IOException, ClassNotFoundException{
+    public static <T> ArrayList<T> readInFile(String archivo) throws IOException, ClassNotFoundException{
         try{
             fileIn = new FileInputStream(archivo);
             if(fileIn.available() == 0){
-                writeInFile(archivo, new ArrayList<Alumno>());
+                writeInFile(archivo, new ArrayList<T>());
             }
             input = new ObjectInputStream(fileIn);
              
             if (input != null) {
-                return (ArrayList<Alumno>)input.readObject();
+                return (ArrayList<T>)input.readObject();
             }else{
-                return new ArrayList<Alumno>();
+                return new ArrayList<T>();
             }
 
         }catch(EOFException e){
-            System.out.println("No anduvo readInFileA\n" + e);
-            return new ArrayList<Alumno>();
+            System.out.println("No anduvo readInFile" + (archivo.equals("alumnos.dat")?"A":(archivo.equals("docentes.dat")?"D":"C")) + e);
+            return new ArrayList<T>();
         }finally{
             if (input != null) {
                 input.close();
             }
         }
     }
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Docente> readInFileD(String archivo) throws IOException, ClassNotFoundException{
-        try{
-            fileIn = new FileInputStream(archivo);
-            if(fileIn.available() == 0){
-                writeInFile(archivo, new ArrayList<Docente>());
-            }
-            input = new ObjectInputStream(fileIn);
-             
-            if (input != null) {
-                return (ArrayList<Docente>)input.readObject();
-            }else{
-                return new ArrayList<Docente>();
-            }
 
-        }catch(EOFException e){
-            System.out.println("No anduvo readInFileD\n" + e);
-            return new ArrayList<Docente>();
-        }
-        finally{
-            if (input != null) {
-                input.close();
-            }
-        }
-    }
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Curso> readInFileC(String archivo) throws IOException, ClassNotFoundException{
-        
-        try{
-            fileIn = new FileInputStream(archivo);
-            if(fileIn.available() == 0){
-                writeInFile(archivo, new ArrayList<Curso>());
-            }
-            input = new ObjectInputStream(fileIn);
-             
-            if (input != null) {
-                return (ArrayList<Curso>)input.readObject();
-            }else{
-                return new ArrayList<Curso>();
-            }
-
-        }catch(EOFException e){
-            System.out.println("No anduvo readInFileC\n" + e);
-            return new ArrayList<Curso>();
-        }
-        finally{
-            if (input != null) {
-                input.close();
-            }
-        }
-    }
-        //Lee el archivo de admin
+    //Lee el archivo de admin
     public static User readInFile() throws IOException, ClassNotFoundException{
         try{
             fileIn = new FileInputStream("admin.dat");

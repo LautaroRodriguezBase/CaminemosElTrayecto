@@ -1,4 +1,3 @@
-com\iset\caminemoseltrayecto\visual\IGAdmin.class
 com\iset\caminemoseltrayecto\visual\AdminFrame.class
 com\iset\caminemoseltrayecto\modelos\Curso.class
 com\iset\caminemoseltrayecto\CaminemosElTrayecto.class
@@ -13,11 +12,9 @@ com\iset\caminemoseltrayecto\visual\AlumnoFrame$1.class
 com\iset\caminemoseltrayecto\modelos\Admin.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame$1.class
 com\iset\caminemoseltrayecto\modelos\EstadoNoValidoException.class
-com\iset\caminemoseltrayecto\visual\IGDocente.class
 com\iset\caminemoseltrayecto\visual\Reseteable.class
 com\iset\caminemoseltrayecto\modelos\Alumno.class
 com\iset\caminemoseltrayecto\visual\LogIn$1.class
-com\iset\caminemoseltrayecto\visual\IGAlumno.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame.class
 com\iset\caminemoseltrayecto\visual\Sancionable.class
 com\iset\caminemoseltrayecto\visual\LogIn$3.class
