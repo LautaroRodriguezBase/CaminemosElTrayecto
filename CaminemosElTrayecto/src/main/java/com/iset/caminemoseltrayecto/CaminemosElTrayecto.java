@@ -41,7 +41,11 @@ public class CaminemosElTrayecto {
         CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFile("cursos.dat");
         CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFile("alumnos.dat");
         CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFile("docentes.dat");
-                
+        
+        System.out.println(alumnos);
+        System.out.println(docentes);
+        System.out.println(cursos);
+
         new LogIn().setVisible(true);
     }
 
@@ -61,8 +65,7 @@ public class CaminemosElTrayecto {
         User us = readInFile();
         CaminemosElTrayecto.usuarios.add(us);//Lee el admin
         
-        for(Docente d : docentes/*readInFileD("docentes.dat")*/){
-            CaminemosElTrayecto.docentes.add(d);
+        for(Docente d : CaminemosElTrayecto.docentes){
             User nU = d;
             CaminemosElTrayecto.usuarios.add(nU);
         }
