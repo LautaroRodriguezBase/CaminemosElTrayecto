@@ -41,12 +41,8 @@ public class CaminemosElTrayecto {
         CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFile("cursos.dat");
         CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFile("alumnos.dat");
         CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFile("docentes.dat");
-
-        System.out.println(CaminemosElTrayecto.alumnos);
-        System.out.println(CaminemosElTrayecto.cursos);
-        System.out.println(CaminemosElTrayecto.docentes);
                 
-        //new LogIn().setVisible(true);
+        new LogIn().setVisible(true);
     }
 
     //creo que todas las funciones deberian ser static para invocarlas desde otro archivo
@@ -196,7 +192,7 @@ public class CaminemosElTrayecto {
             }
 
         }catch(EOFException e){
-            System.out.println("No anduvo 131");
+            System.out.println("No anduvo admin");
         }finally{
             if (input != null) {
                 input.close();
