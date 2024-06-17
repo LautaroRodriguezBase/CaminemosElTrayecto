@@ -11,9 +11,11 @@ com\iset\caminemoseltrayecto\visual\LogIn$2.class
 com\iset\caminemoseltrayecto\visual\AlumnoFrame$1.class
 com\iset\caminemoseltrayecto\modelos\Admin.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame$1.class
+com\iset\caminemoseltrayecto\visual\AlumnoFrame$2.class
 com\iset\caminemoseltrayecto\modelos\EstadoNoValidoException.class
 com\iset\caminemoseltrayecto\visual\Reseteable.class
 com\iset\caminemoseltrayecto\modelos\Alumno.class
+com\iset\caminemoseltrayecto\visual\DocenteFrame$3.class
 com\iset\caminemoseltrayecto\visual\LogIn$1.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame.class
 com\iset\caminemoseltrayecto\visual\Sancionable.class

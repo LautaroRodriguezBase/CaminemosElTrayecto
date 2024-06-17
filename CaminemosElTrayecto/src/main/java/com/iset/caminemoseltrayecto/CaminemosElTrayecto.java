@@ -221,7 +221,7 @@ public class CaminemosElTrayecto {
         s.quitarSancion();
     }
     
-    // Funciones del Alumno
+// Funciones del Alumno
     public static ArrayList<Alumno> getAlumnos(){
         return CaminemosElTrayecto.alumnos;
     }
@@ -262,15 +262,20 @@ public class CaminemosElTrayecto {
         
         return cursosDisponibles;
     }
-
     public static ArrayList<Curso> verCursosAprobados(Alumno a){
         return a.getCursosAprobados();
     }
-
     public static ArrayList<Curso> verCursosInscriptos(Alumno a){
         return a.getCursosInscriptos();
     }
-
+    //Estas dos funciones no aparecen en el UML
+    public static ArrayList<Curso> verCursosHabilitados(Docente d){
+        return getCursosConEstadoEn(d.getCursosCreados(), "Habilitado");//Crear final para los txt
+    }
+    public static ArrayList<Curso> verCursosCerrados(Docente d){
+        return getCursosConEstadoEn(d.getCursosCreados(), "Cerrado");
+    } 
+    
         // Esta tambien la invoca el Docente y Admin
     public static void changePass(User u, String pass){
         if(!pass.equals("") && pass.length() >= 4){
@@ -280,7 +285,7 @@ public class CaminemosElTrayecto {
         }
     }
     
-    // Funciones del Docente
+// Funciones del Docente
     public static ArrayList<Docente> getDocentes(){
         return CaminemosElTrayecto.docentes;
     }
@@ -313,11 +318,8 @@ public class CaminemosElTrayecto {
         }
     }
 
-        //Estas dos funciones no aparecen en el UML
-    public static ArrayList<Curso> verCursosHabilitados(Docente d){
-        return getCursosConEstadoEn(d.getCursosCreados(), "Habilitado");//Crear final para los txt
+// Otras
+    public static void goLogIn(){git 
+        new LogIn().setVisible(true);
     }
-    public static ArrayList<Curso> verCursosCerrados(Docente d){
-        return getCursosConEstadoEn(d.getCursosCreados(), "Cerrado");
-    } 
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Admin extends User implements AdministradorCurso, Serializable{
+public class Admin extends User implements AdministradorCurso, Serializable{//la clase deberia ser FINAL o STATIC(no me acuerdo) solo se necesita un unico objeto
 
     //private static final int userType = 0;
     //Los dos arrays list estan al pedo, deberia usar directamente los del Controlador

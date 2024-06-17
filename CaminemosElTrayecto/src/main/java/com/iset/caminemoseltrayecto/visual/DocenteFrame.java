@@ -23,7 +23,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
     private Docente docente;//Probablemente Final
     private final Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));//deneria ser static
-
+    private Curso cursosD[] = null;//no se por que es cursosD
     /**
      * Creates new form DocenteFrame
      */
@@ -32,8 +32,8 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         this.setTitle("Bienvenido " + this.docente.getApellido() + ", " + this.docente.getNombre());
         //this.setLocationRelativeTo(null);
         
-        Curso cursosD[] = getCursosTotales();
-        initComponents(cursosD);
+        cursosD = getCursosTotales();
+        initComponents();
         
         bCrearCurso.addActionListener(this);
     }
@@ -45,7 +45,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(Curso cursosD[]) {
+    private void initComponents() {
 
         lTitleDocente = new javax.swing.JLabel();
         bCrearCurso = new javax.swing.JButton();
@@ -55,6 +55,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         tfNombreCurso = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         taDescripcion = new javax.swing.JTextArea();
+        bSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +83,13 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         taDescripcion.setText("Descripcion");
         jScrollPane1.setViewportView(taDescripcion);
 
+        bSalir.setText("Salir");
+        bSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -89,7 +97,10 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleDocente)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lTitleDocente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bSalir))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -107,14 +118,17 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cbCursosPrevios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cbCursosPrevios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(549, Short.MAX_VALUE))
+                                    .addComponent(cbCursosPrevios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 543, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lTitleDocente)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lTitleDocente)
+                    .addComponent(bSalir))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -130,7 +144,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
                         .addComponent(cbCursosPrevios1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(cbCursosPrevios2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(352, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
 
         pack();
@@ -139,6 +153,13 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
     private void tfNombreCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreCursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfNombreCursoActionPerformed
+
+    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
+        if(evt.getSource() == bSalir){
+            this.setVisible(false);
+            CaminemosElTrayecto.goLogIn();
+        }
+    }//GEN-LAST:event_bSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -183,6 +204,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCrearCurso;
+    private javax.swing.JButton bSalir;
     private javax.swing.JComboBox<Curso> cbCursosPrevios1;
     private javax.swing.JComboBox<Curso> cbCursosPrevios2;
     private javax.swing.JLabel jLabel1;

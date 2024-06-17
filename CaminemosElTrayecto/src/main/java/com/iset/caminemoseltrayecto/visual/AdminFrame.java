@@ -328,7 +328,10 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_bSancionarActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
-        // TODO add your handling code here:
+        if(evt.getSource() == bSalir){
+            this.setVisible(false);
+            CaminemosElTrayecto.goLogIn();
+        }
     }//GEN-LAST:event_bSalirActionPerformed
 
     private void bHabilitarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHabilitarCursoActionPerformed
