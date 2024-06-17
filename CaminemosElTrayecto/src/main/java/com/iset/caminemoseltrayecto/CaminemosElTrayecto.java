@@ -17,11 +17,9 @@ import com.iset.caminemoseltrayecto.modelos.Docente;
 import com.iset.caminemoseltrayecto.modelos.EstadoNoValidoException;
 import com.iset.caminemoseltrayecto.modelos.User;
 import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
-import com.iset.caminemoseltrayecto.visual.AdminFrame;
 import java.util.ArrayList;
 import com.iset.caminemoseltrayecto.visual.LogIn;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
-import java.io.File;
 
 public class CaminemosElTrayecto {
     private static FileOutputStream fileOut;
@@ -227,8 +225,9 @@ public class CaminemosElTrayecto {
     public static ArrayList<Alumno> getAlumnos(){
         return CaminemosElTrayecto.alumnos;
     }
-    public static void addAlumno(Alumno a){
+    public static void addAlumno(Alumno a) throws IOException{
         CaminemosElTrayecto.alumnos.add(a);
+        CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);//en Fira Code no se ve la d en cursiva
     }
     public static void addAlumnoAlCurso(Alumno a, Curso c) {
         if(a != null && c != null){
@@ -240,10 +239,10 @@ public class CaminemosElTrayecto {
     
     public static ArrayList<Curso> verCursosDisponibles(Alumno a){
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
-        
+
         for(Curso c : CaminemosElTrayecto.cursos){
             Curso [] cursosPrevios = c.getCursosPrevios();
-            
+
             switch(cursosPrevios.length){
                 case 0 -> cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
                 
@@ -285,29 +284,25 @@ public class CaminemosElTrayecto {
     public static ArrayList<Docente> getDocentes(){
         return CaminemosElTrayecto.docentes;
     }
-    public static void addDocente(Docente d){
+    public static void addDocente(Docente d) throws IOException{
         CaminemosElTrayecto.docentes.add(d);
+        CaminemosElTrayecto.writeInFile("docentes.dat", docentes);//en Fira Code no se ve la d en cursiva
     }
     public static void addCurso(Docente d, Curso c) throws IOException, ClassNotFoundException{//No se si es a los docentes, al alumno, a la propia universidad
-        /*  No deberia ser necesario por el tema de que ya se cargan con el programa en el main
-            CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFileC("cursos.dat");
-            CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFileD("docentes.dat");
-        */
+        //Se deberia poder mejorar esta parte, probablemente con un foreach
+        //Teoricamente el objeto es el mismo, se podria hacer con un == directo al objeto
         cursos.add(c);
         d.addCurso(c);
-        int posDocente = -1;
+
         for(int i = 0; i < CaminemosElTrayecto.docentes.size();i++){
             if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){//Creo que un contains hace lo mismo
-                posDocente = i;
+                CaminemosElTrayecto.docentes.get(i).addCurso(c);
+                CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+                CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
             }
-        }//Habria que agregar un if que lance una excepcion si la posDocente es -1
-        CaminemosElTrayecto.docentes.get(posDocente).addCurso(c);
-        CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
-        CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
+        }
     }
-    public static void proponerCurso(Docente d, Curso c){//la ejecuta el docente
-        d.addCurso(c); //no deberia retornar nada
-    }
+
     public static void finalizarCurso(Curso c, ArrayList<Alumno> alumnosAprobados) throws EstadoNoValidoException{//El array list que recibe es de los alumnos aprobados
         c.cambiarEstado("Finalizado");
         for(Alumno a : alumnosAprobados){

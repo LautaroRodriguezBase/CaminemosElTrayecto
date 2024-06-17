@@ -5,10 +5,13 @@ import com.iset.caminemoseltrayecto.visual.Sancionable;
 import com.iset.caminemoseltrayecto.visual.AdminFrame;
 
 import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
+import java.io.IOException;
 
 import java.io.Serializable;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Admin extends User implements AdministradorCurso, Serializable{
 
@@ -23,7 +26,11 @@ public class Admin extends User implements AdministradorCurso, Serializable{
 
     public void addAlumno(Alumno a){
         if(a != null){
-            CaminemosElTrayecto.addAlumno(a);
+            try {
+                CaminemosElTrayecto.addAlumno(a);
+            } catch (IOException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }
@@ -31,7 +38,11 @@ public class Admin extends User implements AdministradorCurso, Serializable{
 
     public void addDocente(Docente d){
         if(d != null){
-            CaminemosElTrayecto.addDocente(d);
+            try {
+                CaminemosElTrayecto.addDocente(d);
+            } catch (IOException ex) {
+                Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }

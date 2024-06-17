@@ -126,6 +126,6 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
 
     @Override
     public String toString() {
-        return nombre + ", " + apellido;
+        return nombre + " " + apellido;
     }
 }
