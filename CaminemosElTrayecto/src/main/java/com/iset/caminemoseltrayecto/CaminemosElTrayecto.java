@@ -47,13 +47,9 @@ public class CaminemosElTrayecto {
         new LogIn().setVisible(true);
     }
 
-    //creo que todas las funciones deberian ser static para invocarlas desde otro archivo
     /*
-     Hay que ir acomodando las funciones en base a quien las puede llamar.
      Sumado a esto el controlador tiene que tener todas las funciones de los modelos
      ya que la visual invoca al controlador y este al modelo.
-     No todas son exclusivas de la clase ya que pueden ser invocadas por el admin.
-     Es para tener una referencia
      */
     // Funciones del Controlador
     public static ArrayList<Curso> getCursos(){
@@ -62,7 +58,8 @@ public class CaminemosElTrayecto {
     public static User existe(String uName, String uPass) throws IOException, ClassNotFoundException {
         User us = readInFile();
         CaminemosElTrayecto.usuarios.add(us);//Lee el admin
-        
+
+        //Creo que se puede castear a la clase padre directamente asi ahorramos los loops
         for(Docente d : CaminemosElTrayecto.docentes){
             User nU = d;
             CaminemosElTrayecto.usuarios.add(nU);
@@ -73,11 +70,9 @@ public class CaminemosElTrayecto {
             CaminemosElTrayecto.usuarios.add(nU);
         }
         /*
-        Antes de eso tiene que llenar el array de usuarios leyendolo del archivo.
-        Para eso tiene que haber un archivo con todas las opciones, de usuarios, de almnos, etc.
         A su vez tiene que haber archivos de respaldo de los anteriores.
         En caso de fallar levanta el original, levanta el de respaldo, elimina al original, y lo recrea de nuevo.
-        Estos archivos deberian estar en carpetas separadas.
+        Estos archivos deberian estar en carpetas separadas.->No se puede elegir la ruta de los archivos
         */
         boolean userExist = false;
         for(User u : CaminemosElTrayecto.usuarios){
@@ -319,7 +314,7 @@ public class CaminemosElTrayecto {
     }
 
 // Otras
-    public static void goLogIn(){git 
+    public static void goLogIn(){
         new LogIn().setVisible(true);
     }
 }
