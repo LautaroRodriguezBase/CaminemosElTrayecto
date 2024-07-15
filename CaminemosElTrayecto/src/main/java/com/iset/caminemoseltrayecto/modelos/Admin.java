@@ -24,6 +24,7 @@ public class Admin extends User implements AdministradorCurso, Serializable{//la
         super(uName, uPass);
     }
 
+    // Estas funciones 'add' estan mal porque son ajenas al objeto de admin
     public void addAlumno(Alumno a){
         if(a != null){
             try {
@@ -35,7 +36,6 @@ public class Admin extends User implements AdministradorCurso, Serializable{//la
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }
     }
-
     public void addDocente(Docente d){
         if(d != null){
             try {
@@ -47,7 +47,7 @@ public class Admin extends User implements AdministradorCurso, Serializable{//la
             throw new NullPointerException("El alumno que a ingresado no es valido");
         }
     }
-
+    // No se si la sancion se tenga que hacer desde el admin, ya que invoca a la funcion de otro modelo
     public void sancionPara(Sancionable s){
         if(s != null){
             s.sancionar();

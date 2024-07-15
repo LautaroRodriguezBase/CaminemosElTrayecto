@@ -39,17 +39,21 @@ public class CaminemosElTrayecto {
         CaminemosElTrayecto.cursos = CaminemosElTrayecto.readInFile("cursos.dat");
         CaminemosElTrayecto.alumnos = CaminemosElTrayecto.readInFile("alumnos.dat");
         CaminemosElTrayecto.docentes = CaminemosElTrayecto.readInFile("docentes.dat");
-        
+
+        CaminemosElTrayecto.usuarios.addAll(alumnos);
+        CaminemosElTrayecto.usuarios.addAll(docentes);
+
         System.out.println(alumnos);
         System.out.println(docentes);
         System.out.println(cursos);
+        System.out.println(usuarios);
 
         new LogIn().setVisible(true);
     }
 
     /*
-     Sumado a esto el controlador tiene que tener todas las funciones de los modelos
-     ya que la visual invoca al controlador y este al modelo.
+        Sumado a esto el controlador tiene que tener todas las funciones de los modelos
+        ya que la visual invoca al controlador y este al modelo.
      */
     // Funciones del Controlador
     public static ArrayList<Curso> getCursos(){
@@ -64,7 +68,7 @@ public class CaminemosElTrayecto {
             User nU = d;
             CaminemosElTrayecto.usuarios.add(nU);
         }
-        
+
         for(Alumno a : alumnos/*readInFileA("alumnos.dat")*/){
             User nU = a;
             CaminemosElTrayecto.usuarios.add(nU);
@@ -159,14 +163,14 @@ public class CaminemosElTrayecto {
             if(fileIn.available() == 0){
                 writeInFile(archivo, new ArrayList<T>());
             }
+
             input = new ObjectInputStream(fileIn);
-             
+
             if (input != null) {
                 return (ArrayList<T>)input.readObject();
             }else{
                 return new ArrayList<T>();
             }
-
         }catch(EOFException e){
             System.out.println("No anduvo readInFile" + (archivo.equals("alumnos.dat")?"A":(archivo.equals("docentes.dat")?"D":"C")) + e);
             return new ArrayList<T>();
@@ -198,9 +202,11 @@ public class CaminemosElTrayecto {
     }
     
 // Funcionesd del Admin
-    public static void habilitarCurso(Curso c) throws EstadoNoValidoException{//la ejecuta el administrador.
+    //Todas las funciones que hacen cambios en los objetos también tienen que actualizar los archivos
+    public static void habilitarCurso(Curso c) throws EstadoNoValidoException, IOException{//la ejecuta el administrador.
                                                //Deberia tambien el Docente pero la visual deberia mostrarle solo los cerrados
         c.cambiarEstado("Habilitado");//el estado del curso deberia ser un int, y de ahi asociarlo a un Stirng
+        CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
     }
         //Medio al pedo la de arriba si basicamente lo hace la de abajo. El nombre de la de arriba tiene que ir en el btn de la visual
     public static void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException {
@@ -215,7 +221,7 @@ public class CaminemosElTrayecto {
     public static void quitarSancionA(Sancionable s){
         s.quitarSancion();
     }
-    
+
 // Funciones del Alumno
     public static ArrayList<Alumno> getAlumnos(){
         return CaminemosElTrayecto.alumnos;
@@ -231,7 +237,7 @@ public class CaminemosElTrayecto {
             throw new NullPointerException("El curso y/o el alumno que a ingresado no es valido");
         }
     }
-    
+
     public static ArrayList<Curso> verCursosDisponibles(Alumno a){
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
 
@@ -240,13 +246,13 @@ public class CaminemosElTrayecto {
 
             switch(cursosPrevios.length){
                 case 0 -> cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
-                
+
                 case 1 -> {
                     if(a.getCursosAprobados().contains(cursosPrevios[0])){
                         cursosDisponibles.add(c);
                     }
                 }
-                
+
                 case 2 -> {
                     if(a.getCursosAprobados().contains(cursosPrevios[0]) && a.getCursosAprobados().contains(cursosPrevios[1])){
                         cursosDisponibles.add(c);
@@ -254,7 +260,7 @@ public class CaminemosElTrayecto {
                 }
             }
         }
-        
+
         return cursosDisponibles;
     }
     public static ArrayList<Curso> verCursosAprobados(Alumno a){
@@ -294,7 +300,7 @@ public class CaminemosElTrayecto {
         cursos.add(c);
         d.addCurso(c);
 
-        for(int i = 0; i < CaminemosElTrayecto.docentes.size();i++){
+        for(int i = 0; i < CaminemosElTrayecto.docentes.size(); i++){
             if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){//Creo que un contains hace lo mismo
                 CaminemosElTrayecto.docentes.get(i).addCurso(c);
                 CaminemosElTrayecto.writeInFile("cursos.dat", cursos);

@@ -90,7 +90,7 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     //DD Heredado de User
     @Override
     public void mostrarVentana(){
-        try {
+        try {// Esta mal el objeto creo que no puede invocar la ventana
             new DocenteFrame(this).setVisible(true);
         } catch (IOException ex) {
             Logger.getLogger(Docente.class.getName()).log(Level.SEVERE, null, ex);

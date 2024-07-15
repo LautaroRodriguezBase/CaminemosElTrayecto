@@ -9,7 +9,10 @@ import com.iset.caminemoseltrayecto.modelos.Admin;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
 import com.iset.caminemoseltrayecto.modelos.Curso;
 import com.iset.caminemoseltrayecto.modelos.Docente;
+import com.iset.caminemoseltrayecto.modelos.EstadoNoValidoException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,10 +20,10 @@ import java.util.ArrayList;
  */
 public class AdminFrame extends javax.swing.JFrame {
     Admin admin;
+    // Creo que los arrays son innecesarios porque tenemos el controlador
     private Alumno [] alumnos;
     private Docente [] docentes;
     private Curso [] cursos;
-
 
     /**
      * Creates new form AdminFrame
@@ -158,12 +161,6 @@ public class AdminFrame extends javax.swing.JFrame {
         jLabel10.setText("DNI");
 
         jLabel11.setText("Telefono");
-
-        tfUsuarioDocente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsuarioDocenteActionPerformed(evt);
-            }
-        });
 
         bAddDocente.setText("addDocente");
         bAddDocente.addActionListener(new java.awt.event.ActionListener() {
@@ -335,7 +332,16 @@ public class AdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_bSalirActionPerformed
 
     private void bHabilitarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHabilitarCursoActionPerformed
-        // TODO add your handling code here:
+        try {
+            if(cbCursos.getSelectedItem() != null){
+                Curso curSel = (Curso)cbCursos.getSelectedItem();
+                System.out.println(curSel.getEstadoCurso());
+                CaminemosElTrayecto.habilitarCurso((Curso) cbCursos.getSelectedItem());
+                System.out.println(curSel.getEstadoCurso());
+            }
+        } catch (EstadoNoValidoException ex) {
+            Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_bHabilitarCursoActionPerformed
 
     private void bAddDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddDocenteActionPerformed
@@ -349,10 +355,6 @@ public class AdminFrame extends javax.swing.JFrame {
             admin.addAlumno(new Alumno(tfUsuarioAlumno.getText(), tfDNIAlumno.getText(), tfNombreAlumno.getText(), tfApellidoAlumno.getText(), tfDNIAlumno.getText(), tfTelefonoAlumno.getText()));
         }
     }//GEN-LAST:event_bAddAlumnoActionPerformed
-
-    private void tfUsuarioDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioDocenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsuarioDocenteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bAddAlumno;

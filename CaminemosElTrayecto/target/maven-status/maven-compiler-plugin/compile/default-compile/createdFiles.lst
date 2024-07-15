@@ -2,7 +2,6 @@ com\iset\caminemoseltrayecto\visual\AdminFrame.class
 com\iset\caminemoseltrayecto\modelos\Curso.class
 com\iset\caminemoseltrayecto\CaminemosElTrayecto.class
 com\iset\caminemoseltrayecto\visual\AdminFrame$1.class
-com\iset\caminemoseltrayecto\visual\AdminFrame$6.class
 com\iset\caminemoseltrayecto\visual\AlumnoFrame.class
 com\iset\caminemoseltrayecto\modelos\User.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame$2.class
@@ -21,11 +20,8 @@ com\iset\caminemoseltrayecto\modelos\EstadoNoValidoException.class
 com\iset\caminemoseltrayecto\visual\Reseteable.class
 com\iset\caminemoseltrayecto\visual\AdminFrame$2.class
 com\iset\caminemoseltrayecto\modelos\Alumno.class
-<<<<<<< HEAD
 com\iset\caminemoseltrayecto\visual\DocenteFrame$3.class
-=======
 com\iset\caminemoseltrayecto\visual\AdminFrame$4.class
->>>>>>> master
 com\iset\caminemoseltrayecto\visual\LogIn$1.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame.class
 com\iset\caminemoseltrayecto\visual\Sancionable.class

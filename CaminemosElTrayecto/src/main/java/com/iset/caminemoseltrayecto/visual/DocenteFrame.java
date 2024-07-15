@@ -227,7 +227,6 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == bCrearCurso){
-            System.out.println("Boton add presionado");
             Curso [] cursosPrevios = {null, null};
             if(cbCursosPrevios1.getSelectedItem() != null){
                 cursosPrevios[0] = (Curso)cbCursosPrevios1.getSelectedItem();
