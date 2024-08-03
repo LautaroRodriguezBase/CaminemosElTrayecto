@@ -10,6 +10,7 @@ import com.iset.caminemoseltrayecto.modelos.Alumno;
 import com.iset.caminemoseltrayecto.modelos.Curso;
 import com.iset.caminemoseltrayecto.modelos.Docente;
 import com.iset.caminemoseltrayecto.modelos.EstadoNoValidoException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -340,6 +341,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 System.out.println(curSel.getEstadoCurso());
             }
         } catch (EstadoNoValidoException ex) {
+            Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_bHabilitarCursoActionPerformed

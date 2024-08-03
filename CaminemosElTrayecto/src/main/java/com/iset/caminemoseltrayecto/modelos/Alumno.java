@@ -10,7 +10,7 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
 
     private String nombre, apellido, dni, numTelefono;
 
-    private int estado = 0;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
+    private int estado = NORMAL;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
 
     private ArrayList<Curso> cursosAprobados = new ArrayList<Curso>();
     private ArrayList<Curso> cursosInscriptos = new ArrayList<Curso>();
@@ -98,10 +98,10 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
     
     //Sancionable
     public void sancionar() {
-        this.estado = 1;
+        this.estado = SANCIONADO;
     }
     public void quitarSancion() {
-        this.estado = 0;
+        this.estado = NORMAL;
     }
 
     //DD Heredadas

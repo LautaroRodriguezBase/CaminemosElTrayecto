@@ -14,7 +14,7 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
 
     private String nombre, apellido, dni, numTelefono = "";
     
-    private int estado = 0;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
+    private int estado = NORMAL;//Podria ser varios ademas de sancionado, como "en revision", "en mantenimiento", etc
     
     private ArrayList<Curso> cursosCreados = new ArrayList<Curso>();
 
@@ -79,11 +79,11 @@ public class Docente extends User implements Sancionable, Reseteable, Administra
     //Sancionable
     @Override
     public void sancionar() {
-        this.estado = 1;
+        this.estado = SANCIONADO;
     }
     @Override
     public void quitarSancion() {
-        this.estado = 0;
+        this.estado = NORMAL;
     }    
     
     
