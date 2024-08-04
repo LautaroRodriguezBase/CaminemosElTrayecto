@@ -189,6 +189,9 @@ public class AdminFrame extends javax.swing.JFrame {
 
         jLabel14.setText("Docentes");
 
+        lMsjSancionar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lMsjSancionar.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -219,7 +222,7 @@ public class AdminFrame extends javax.swing.JFrame {
                                     .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(bHabilitarCurso)
                                     .addComponent(lCursoSeleccionado)))
-                            .addComponent(lMsjSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lMsjSancionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfUsuarioDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -319,7 +322,7 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(bSancionar)
                             .addComponent(bHabilitarCurso))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lMsjSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lMsjSancionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(277, Short.MAX_VALUE))
         );
 

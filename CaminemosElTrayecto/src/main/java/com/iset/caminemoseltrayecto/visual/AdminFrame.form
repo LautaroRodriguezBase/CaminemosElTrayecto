@@ -55,7 +55,7 @@
                                   <Component id="lCursoSeleccionado" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lMsjSancionar" min="-2" pref="115" max="-2" attributes="0"/>
+                          <Component id="lMsjSancionar" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -178,7 +178,7 @@
                           <Component id="bHabilitarCurso" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lMsjSancionar" min="-2" pref="25" max="-2" attributes="0"/>
+                      <Component id="lMsjSancionar" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="277" max="32767" attributes="0"/>
@@ -359,6 +359,10 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lMsjSancionar">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="2"/>
+        <Property name="verticalAlignment" type="int" value="1"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
