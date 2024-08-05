@@ -20,6 +20,8 @@ import com.iset.caminemoseltrayecto.modelos.UsuarioNoExisteException;
 import java.util.ArrayList;
 import com.iset.caminemoseltrayecto.visual.LogIn;
 import com.iset.caminemoseltrayecto.visual.Sancionable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class CaminemosElTrayecto {
     private static FileOutputStream fileOut;
@@ -211,9 +213,24 @@ public class CaminemosElTrayecto {
         //Medio al pedo la de arriba si basicamente lo hace la de abajo. El nombre de la de arriba tiene que ir en el btn de la visual
     public static void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException {
         c.cambiarEstado(estado);
+        try {
+            CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+        } catch (IOException ex) {
+            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public static void blanquearPass(User u, String DNI){//hay dos opciones, o se pone el DNI como atributo de USER, o se pasa el DNI como parametro
         u.setUserPass(DNI);
+        try {
+            if(u.esDocente(u)){
+                //Actualiza los datos
+                CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
+            }else{
+                CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     public static void sancionarA(Sancionable s) throws IOException{
         s.sancionar();//EL docente y alumno deberian tener una variable para saber su estado o un bool para saber si estan 
@@ -226,6 +243,17 @@ public class CaminemosElTrayecto {
     }
     public static void quitarSancionA(Sancionable s){
         s.quitarSancion();
+        User u = (User) s;
+        try {
+            if(u.esDocente(u)){
+                //Actualiza los datos
+                CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
+            }else{
+                CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 // Funciones del Alumno
@@ -238,9 +266,17 @@ public class CaminemosElTrayecto {
     }
     public static void addAlumnoAlCurso(Alumno a, Curso c) {
         if(a != null && c != null){
-            c.addAlumno(a);// Tambien se tiene que actualizar el archivo
+            c.addAlumno(a);
+            a.addCursoInscripto(c);
         }else{
             throw new NullPointerException("El curso y/o el alumno que a ingresado no es valido");
+        }
+
+        try {
+            CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+            CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+        } catch (IOException ex) {
+            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -287,6 +323,16 @@ public class CaminemosElTrayecto {
     public static void changePass(User u, String pass){
         if(!pass.equals("") && pass.length() >= 4){
             u.setUserPass(pass);
+            try {
+                if(u.esDocente(u)){
+                    //Actualiza los datos
+                    CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
+                }else{
+                    CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             throw new ContraseñaInvalidaException("La contraseña que a ingresado es invalida");
         }
@@ -305,23 +351,27 @@ public class CaminemosElTrayecto {
         //Teoricamente el objeto es el mismo, se podria hacer con un == directo al objeto
         cursos.add(c);
         d.addCurso(c);
-
-        for(int i = 0; i < CaminemosElTrayecto.docentes.size(); i++){
-            if(CaminemosElTrayecto.docentes.get(i).getDni().equals(d.getDni())){//Creo que un contains hace lo mismo
-                CaminemosElTrayecto.docentes.get(i).addCurso(c);
-                CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
-                CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
-            }
-        }
+        
+        CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+        CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
     }
 
     public static void finalizarCurso(Curso c, ArrayList<Alumno> alumnosAprobados) throws EstadoNoValidoException{//El array list que recibe es de los alumnos aprobados
         c.cambiarEstado("Finalizado");
+        
         for(Alumno a : alumnosAprobados){
             a.addCursoAprobado(c);
         }
+        
         for(Alumno a : c.getAlumnos()){
             a.removeCursoInscripto(c);
+        }
+        
+        try {
+            CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+            CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+        } catch (IOException ex) {
+            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
