@@ -25,7 +25,7 @@ public abstract class User implements Serializable{
         return this.userPass;
     }
 
-    public abstract boolean esAdmin(User u);
+    public abstract boolean esAdmin(User u);// para que carajo recibe como parametro un usuario
     public abstract boolean esDocente(User u);
     public abstract void mostrarVentana();
 }

@@ -215,8 +215,14 @@ public class CaminemosElTrayecto {
     public static void blanquearPass(User u, String DNI){//hay dos opciones, o se pone el DNI como atributo de USER, o se pasa el DNI como parametro
         u.setUserPass(DNI);
     }
-    public static void sancionarA(Sancionable s){
-        s.sancionar();//EL docente y alumno deberian tener una variable para saber su estado o un bool para saber si estan sancionados
+    public static void sancionarA(Sancionable s) throws IOException{
+        s.sancionar();//EL docente y alumno deberian tener una variable para saber su estado o un bool para saber si estan 
+        User u = (User) s;
+        if(u.esDocente(u)){//Actualiza los datos
+            CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
+        }else{
+            CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+        }
     }
     public static void quitarSancionA(Sancionable s){
         s.quitarSancion();

@@ -38,7 +38,6 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="lUsuarioSeleccionado" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="bSancionar" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="cbAlumnos" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -47,15 +46,16 @@
                                           <Component id="cbDocentes" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
+                                  <Component id="bSancionar" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="cbCursos" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="bHabilitarCurso" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="lCursoSeleccionado" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <Component id="lMsjSancionar" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" min="-2" pref="319" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -88,7 +88,7 @@
                   </Group>
                   <Component id="jLabel12" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="437" max="32767" attributes="0"/>
+              <EmptySpace pref="431" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -167,18 +167,18 @@
                           <Component id="bAddAlumno" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lUsuarioSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lCursoSeleccionado" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bSancionar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="bHabilitarCurso" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="bHabilitarCurso" min="-2" max="-2" attributes="0"/>
+                          <Component id="bSancionar" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lMsjSancionar" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="199" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="277" max="32767" attributes="0"/>
@@ -237,7 +237,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="bSancionar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Sancionar"/>
+        <Property name="text" type="java.lang.String" value="Sancionar/QuitarSancion"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bSancionarActionPerformed"/>
@@ -358,11 +358,23 @@
         <Property name="text" type="java.lang.String" value="Docentes"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lMsjSancionar">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="2"/>
-        <Property name="verticalAlignment" type="int" value="1"/>
-      </Properties>
-    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="taMsjSancionar">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+            <Property name="columns" type="int" value="15"/>
+            <Property name="lineWrap" type="boolean" value="true"/>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="tabSize" type="int" value="4"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
   </SubComponents>
 </Form>

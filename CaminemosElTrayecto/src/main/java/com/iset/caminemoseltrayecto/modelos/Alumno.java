@@ -110,7 +110,7 @@ public class Alumno extends User implements Sancionable, Reseteable{//era necesa
         new AlumnoFrame(this).setVisible(true);
     }
     @Override
-    public boolean esAdmin(User u) {
+    public boolean esAdmin(User u) {//NO TIENE SENTIDO
         return false;
     }
     @Override
