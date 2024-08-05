@@ -10,7 +10,6 @@ com\iset\caminemoseltrayecto\visual\AdminFrame$3.class
 com\iset\caminemoseltrayecto\modelos\ContraseñaInvalidaException.class
 com\iset\caminemoseltrayecto\visual\AdminFrame$5.class
 com\iset\caminemoseltrayecto\visual\AdministradorCurso.class
-com\iset\caminemoseltrayecto\visual\LogIn$2.class
 com\iset\caminemoseltrayecto\visual\AlumnoFrame$1.class
 com\iset\caminemoseltrayecto\modelos\Docente.class
 com\iset\caminemoseltrayecto\modelos\Admin.class
@@ -20,10 +19,8 @@ com\iset\caminemoseltrayecto\modelos\EstadoNoValidoException.class
 com\iset\caminemoseltrayecto\visual\Reseteable.class
 com\iset\caminemoseltrayecto\visual\AdminFrame$2.class
 com\iset\caminemoseltrayecto\modelos\Alumno.class
-com\iset\caminemoseltrayecto\visual\DocenteFrame$3.class
 com\iset\caminemoseltrayecto\visual\AdminFrame$4.class
 com\iset\caminemoseltrayecto\visual\LogIn$1.class
 com\iset\caminemoseltrayecto\visual\DocenteFrame.class
 com\iset\caminemoseltrayecto\visual\Sancionable.class
-com\iset\caminemoseltrayecto\visual\LogIn$3.class
 com\iset\caminemoseltrayecto\visual\LogIn.class

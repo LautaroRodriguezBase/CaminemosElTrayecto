@@ -82,16 +82,8 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
         jLabel1.setText("Curso Nuevo");
 
-        tfNombreCurso.setText("Nombre");
-        tfNombreCurso.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfNombreCursoActionPerformed(evt);
-            }
-        });
-
         taDescripcion.setColumns(20);
         taDescripcion.setRows(5);
-        taDescripcion.setText("Descripcion");
         jScrollPane1.setViewportView(taDescripcion);
 
         bSalir.setText("Salir");
@@ -104,8 +96,9 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
         jLabel2.setText("Noticias");
 
         taNoticias.setEditable(false);
-        taNoticias.setColumns(20);
-        taNoticias.setRows(5);
+        taNoticias.setColumns(10);
+        taNoticias.setLineWrap(true);
+        taNoticias.setRows(25);
         taNoticias.setText("Aquí verá las noticias.");
         taNoticias.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane2.setViewportView(taNoticias);
@@ -131,12 +124,9 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
                                     .addComponent(jLabel1)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(tfNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(34, 34, 34))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(bCrearCurso)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                            .addComponent(bCrearCurso)
+                                            .addComponent(tfNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,7 +152,7 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(tfNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(bCrearCurso))
@@ -178,10 +168,6 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfNombreCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNombreCursoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfNombreCursoActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         if(evt.getSource() == bSalir){
@@ -267,20 +253,25 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
                 cursosPrevios[1] = (Curso)cbCursosPrevios2.getSelectedItem();
             }
 
-            try {
-                System.out.println("try");
-                Curso cursoNuevo = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);
-                CaminemosElTrayecto.addCurso(this.docente, cursoNuevo);
-                
-                Curso cursosT[] = getCursosTotales();
-                cbCursosPrevios1.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
-                cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
-                System.out.println("Fin try");
-            } catch (IOException ex) {
+            try{
+                if( (tfNombreCurso.getText() != null || tfNombreCurso.getText().equals("")) && (taDescripcion.getText() != null ||taDescripcion.getText().equals("") ) ){
+
+                    System.out.println("try");
+                    Curso cursoNuevo = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);
+                    CaminemosElTrayecto.addCurso(this.docente, cursoNuevo);
+
+                    Curso cursosT[] = getCursosTotales();
+                    cbCursosPrevios1.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
+                    cbCursosPrevios2.setModel(new javax.swing.DefaultComboBoxModel<>(cursosT));
+                    System.out.println("Fin try");
+                }else{
+                    taNoticias.setText("No se puede crear el curso.\nCampos vacíos.");
+                }
+            }catch (IOException ex) {
                 tfNombreCurso.setText("Error");
                 tfNombreCurso.setBorder(borderRed);
                 Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ClassNotFoundException ex) {
+            }catch (ClassNotFoundException ex) {
                 Logger.getLogger(DocenteFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

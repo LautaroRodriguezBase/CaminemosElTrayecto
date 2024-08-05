@@ -38,7 +38,6 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
         lUsuario = new javax.swing.JLabel();
         lContrasena = new javax.swing.JLabel();
         tfUserName = new javax.swing.JTextField();
@@ -47,108 +46,76 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lMsjDeIngreso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel.setBackground(new java.awt.Color(25, 20, 25));
-        jPanel.setPreferredSize(new java.awt.Dimension(500, 400));
+        setResizable(false);
 
         lUsuario.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        lUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        lUsuario.setForeground(new java.awt.Color(0, 0, 0));
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lUsuario.setText("Usuario");
 
         lContrasena.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        lContrasena.setForeground(new java.awt.Color(255, 255, 255));
+        lContrasena.setForeground(new java.awt.Color(0, 0, 0));
         lContrasena.setText("Contraseña");
 
         tfUserName.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         tfUserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfUserName.setToolTipText("Ingrese su usuario");
-        tfUserName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUserNameActionPerformed(evt);
-            }
-        });
 
         tfUserPass.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         tfUserPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfUserPass.setToolTipText("Ingrese su contraseña");
-        tfUserPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUserPassActionPerformed(evt);
-            }
-        });
 
         btnIngresar.setLabel("Ingresar");
 
         lMsjDeIngreso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        lMsjDeIngreso.setForeground(new java.awt.Color(255, 255, 255));
+        lMsjDeIngreso.setForeground(new java.awt.Color(0, 0, 0));
         lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(lUsuario))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(lContrasena))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(btnIngresar)))
-                .addContainerGap(216, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(tfUserName)
-                    .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
-        );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addComponent(lUsuario)
-                .addGap(18, 18, 18)
-                .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lContrasena)
-                .addGap(18, 18, 18)
-                .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnIngresar)
-                .addGap(165, 165, 165))
-        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(btnIngresar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(220, 220, 220)
+                        .addComponent(lUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(lContrasena)))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(150, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(150, 150, 150))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(81, 81, 81)
+                .addComponent(lUsuario)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(lContrasena)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresar)
+                .addGap(18, 18, 18)
+                .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfUserPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUserPassActionPerformed
-
-    private void tfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUserNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,7 +154,6 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JPanel jPanel;
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lMsjDeIngreso;
     private javax.swing.JLabel lUsuario;
