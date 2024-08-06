@@ -6,12 +6,14 @@ package com.iset.caminemoseltrayecto.visual;
 
 import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
+import com.iset.caminemoseltrayecto.modelos.Curso;
 
 /**
  *
  * @author lauti
  */
 public class AlumnoFrame extends javax.swing.JFrame {
+    private Curso cursosD[] = null;
     private Alumno alumno;
     /**
      * Creates new form UserFrame
@@ -19,6 +21,9 @@ public class AlumnoFrame extends javax.swing.JFrame {
     public AlumnoFrame(Alumno alumno) {
         this.alumno = alumno;
         this.setTitle("Bienvenido " + this.alumno.getNombre() + " " + this.alumno.getApellido());
+        
+        cursosD = (Curso[]) CaminemosElTrayecto.verCursosDisponibles(alumno).toArray();
+
         initComponents();
     }
 
@@ -36,6 +41,15 @@ public class AlumnoFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        lCursosDisponibles = new javax.swing.JLabel();
+        cbCursosDisponibles = new javax.swing.JComboBox<>();
+        bAgregarmeCurso = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        taCursosAprobados = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        taCursosInscriptos = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,35 +71,93 @@ public class AlumnoFrame extends javax.swing.JFrame {
 
         jLabel1.setText("Noticias");
 
+        lCursosDisponibles.setText("Cursos Disponibles");
+
+        cbCursosDisponibles.setModel(new javax.swing.DefaultComboBoxModel<>(cursosD));
+        cbCursosDisponibles.setSelectedItem(cursosD[0]);
+
+        bAgregarmeCurso.setText("Agregarme al Curso");
+        bAgregarmeCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bAgregarmeCursoActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Cursos Aprobados");
+
+        taCursosAprobados.setEditable(false);
+        taCursosAprobados.setColumns(10);
+        taCursosAprobados.setLineWrap(true);
+        taCursosAprobados.setRows(30);
+        taCursosAprobados.setTabSize(4);
+        taCursosAprobados.setWrapStyleWord(true);
+        jScrollPane2.setViewportView(taCursosAprobados);
+
+        jLabel3.setText("Cursos Inscripto");
+
+        taCursosInscriptos.setEditable(false);
+        taCursosInscriptos.setColumns(10);
+        taCursosInscriptos.setLineWrap(true);
+        taCursosInscriptos.setRows(20);
+        taCursosInscriptos.setTabSize(4);
+        taCursosInscriptos.setWrapStyleWord(true);
+        jScrollPane3.setViewportView(taCursosInscriptos);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                    .addComponent(bSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1)
+                    .addComponent(lTitleAlumno))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bAgregarmeCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbCursosDisponibles, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lCursosDisponibles, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 413, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lTitleAlumno)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1073, Short.MAX_VALUE)
-                        .addComponent(bSalir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lTitleAlumno)
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lTitleAlumno)
-                    .addComponent(bSalir))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(2, 2, 2)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 604, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(lCursosDisponibles)
+                        .addGap(18, 18, 18)
+                        .addComponent(cbCursosDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bAgregarmeCurso)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2)
+                            .addComponent(jScrollPane3))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(bSalir)
                 .addContainerGap())
         );
 
@@ -98,6 +170,12 @@ public class AlumnoFrame extends javax.swing.JFrame {
             CaminemosElTrayecto.goLogIn();
         }
     }//GEN-LAST:event_bSalirActionPerformed
+
+    private void bAgregarmeCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarmeCursoActionPerformed
+        if(evt.getSource() == bAgregarmeCurso){
+            
+        }
+    }//GEN-LAST:event_bAgregarmeCursoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,10 +215,19 @@ public class AlumnoFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bAgregarmeCurso;
     private javax.swing.JButton bSalir;
+    private javax.swing.JComboBox<Curso> cbCursosDisponibles;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JLabel lCursosDisponibles;
     private javax.swing.JLabel lTitleAlumno;
+    private javax.swing.JTextArea taCursosAprobados;
+    private javax.swing.JTextArea taCursosInscriptos;
     // End of variables declaration//GEN-END:variables
 }
