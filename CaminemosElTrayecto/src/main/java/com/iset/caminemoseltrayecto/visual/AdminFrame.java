@@ -105,14 +105,11 @@ public class AdminFrame extends javax.swing.JFrame {
         lDNIAlumno = new javax.swing.JLabel();
         tfTelefonoAlumno = new javax.swing.JTextField();
         pSancionarUsuario = new javax.swing.JPanel();
-        lTitleAdmin = new javax.swing.JLabel();
         lSubtituloSancionar = new javax.swing.JLabel();
         cbDocenteSancionar = new javax.swing.JComboBox<>();
         lDocenteSancionar = new javax.swing.JLabel();
         lAlumnosSancionar = new javax.swing.JLabel();
         cbAlumnoSancionar = new javax.swing.JComboBox<>();
-        lUsuarioSeleccionado = new javax.swing.JLabel();
-        tfUsuarioSeleccionadoSancionar = new javax.swing.JTextField();
         bSancionar = new javax.swing.JButton();
         pHabilitarCurso = new javax.swing.JPanel();
         lSubtituloHabilitarCurso = new javax.swing.JLabel();
@@ -124,6 +121,8 @@ public class AdminFrame extends javax.swing.JFrame {
         bCancelarNuevo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Interfaz Admin");
+        setName("AdminFrame"); // NOI18N
         setResizable(false);
 
         pCancelarCurso.setBackground(new java.awt.Color(0, 0, 0));
@@ -169,29 +168,28 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCancelarCursoLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lDocenteCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lDocenteCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(lCursoCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbDocenteCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbCursoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbDocenteCancelar, 0, 125, Short.MAX_VALUE)
+                    .addComponent(cbCursoCancelar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
-            .addGroup(pCancelarCursoLayout.createSequentialGroup()
-                .addGap(162, 162, 162)
-                .addComponent(bCancelar)
-                .addContainerGap(145, Short.MAX_VALUE))
             .addComponent(SubtituloSancion3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pCancelarCursoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bCerrarSesionAdmin)
-                .addContainerGap())
+            .addGroup(pCancelarCursoLayout.createSequentialGroup()
+                .addGroup(pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pCancelarCursoLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(bCancelar))
+                    .addGroup(pCancelarCursoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(bCerrarSesionAdmin)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pCancelarCursoLayout.setVerticalGroup(
             pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pCancelarCursoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(bCerrarSesionAdmin)
-                .addGap(20, 20, 20)
                 .addComponent(SubtituloSancion3)
                 .addGap(18, 18, 18)
                 .addGroup(pCancelarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -203,10 +201,13 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(cbCursoCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(bCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addComponent(bCerrarSesionAdmin)
+                .addContainerGap())
         );
 
         pAgregarUsuario.setBackground(new java.awt.Color(0, 0, 0));
+        pAgregarUsuario.setPreferredSize(new java.awt.Dimension(400, 700));
 
         lSubtituloNuevoUsuario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lSubtituloNuevoUsuario.setForeground(new java.awt.Color(255, 255, 255));
@@ -416,10 +417,7 @@ public class AdminFrame extends javax.swing.JFrame {
         );
 
         pSancionarUsuario.setBackground(new java.awt.Color(0, 0, 0));
-
-        lTitleAdmin.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lTitleAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        lTitleAdmin.setText("Admin");
+        pSancionarUsuario.setPreferredSize(new java.awt.Dimension(400, 273));
 
         lSubtituloSancionar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lSubtituloSancionar.setForeground(new java.awt.Color(255, 255, 255));
@@ -440,16 +438,6 @@ public class AdminFrame extends javax.swing.JFrame {
         cbAlumnoSancionar.setModel(new javax.swing.DefaultComboBoxModel<>(alumnos));
         cbDocenteSancionar.setSelectedItem(alumnos[0]);
 
-        lUsuarioSeleccionado.setForeground(new java.awt.Color(255, 255, 255));
-        lUsuarioSeleccionado.setText("Usuario seleccionado:");
-
-        tfUsuarioSeleccionadoSancionar.setText("UsuarioSeleccionado");
-        tfUsuarioSeleccionadoSancionar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUsuarioSeleccionadoSancionarActionPerformed(evt);
-            }
-        });
-
         bSancionar.setText("Sancionar");
         bSancionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -462,33 +450,25 @@ public class AdminFrame extends javax.swing.JFrame {
         pSancionarUsuarioLayout.setHorizontalGroup(
             pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pSancionarUsuarioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lTitleAdmin)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pSancionarUsuarioLayout.createSequentialGroup()
-                .addGap(47, 47, 47)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addGroup(pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lUsuarioSeleccionado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lDocenteSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbDocenteSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lAlumnosSancionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfUsuarioSeleccionadoSancionar)
-                    .addComponent(cbAlumnoSancionar, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(47, 47, 47))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pSancionarUsuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bSancionar)
-                .addGap(159, 159, 159))
+                    .addComponent(cbAlumnoSancionar, 0, 125, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
             .addComponent(lSubtituloSancionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pSancionarUsuarioLayout.createSequentialGroup()
+                .addGap(160, 160, 160)
+                .addComponent(bSancionar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pSancionarUsuarioLayout.setVerticalGroup(
             pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pSancionarUsuarioLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lTitleAdmin)
-                .addGap(23, 23, 23)
+                .addContainerGap()
                 .addComponent(lSubtituloSancionar)
                 .addGap(18, 18, 18)
                 .addGroup(pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -499,12 +479,8 @@ public class AdminFrame extends javax.swing.JFrame {
                     .addComponent(cbDocenteSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbAlumnoSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(pSancionarUsuarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lUsuarioSeleccionado)
-                    .addComponent(tfUsuarioSeleccionadoSancionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
                 .addComponent(bSancionar)
-                .addGap(430, 430, 430))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pHabilitarCurso.setBackground(new java.awt.Color(0, 0, 0));
@@ -521,6 +497,11 @@ public class AdminFrame extends javax.swing.JFrame {
 
         cbDocenteHabilitar.setModel(new javax.swing.DefaultComboBoxModel<>(alumnos));
         cbDocenteSancionar.setSelectedItem(alumnos[0]);
+        cbDocenteHabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbDocenteHabilitarActionPerformed(evt);
+            }
+        });
 
         lCursoCreado.setForeground(new java.awt.Color(255, 255, 255));
         lCursoCreado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -550,19 +531,19 @@ public class AdminFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pHabilitarCursoLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(pHabilitarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lDocenteHabilitar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lDocenteHabilitar, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
                     .addComponent(lCursoCreado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pHabilitarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbDocenteHabilitar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbCursoCreado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pHabilitarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cbDocenteHabilitar, 0, 125, Short.MAX_VALUE)
+                    .addComponent(cbCursoCreado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(60, 60, 60))
             .addGroup(pHabilitarCursoLayout.createSequentialGroup()
                 .addGap(81, 81, 81)
                 .addComponent(bHabilitar)
                 .addGap(87, 87, 87)
                 .addComponent(bCancelarNuevo)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(lSubtituloHabilitarCurso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pHabilitarCursoLayout.setVerticalGroup(
@@ -582,7 +563,7 @@ public class AdminFrame extends javax.swing.JFrame {
                 .addGroup(pHabilitarCursoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bHabilitar)
                     .addComponent(bCancelarNuevo))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -590,22 +571,22 @@ public class AdminFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pSancionarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pAgregarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pSancionarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pCancelarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pHabilitarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pHabilitarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pAgregarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pAgregarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pCancelarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pSancionarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pHabilitarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(pSancionarUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(pAgregarUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pHabilitarCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pCancelarCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -670,10 +651,6 @@ public class AdminFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfTelefonoAlumnoActionPerformed
 
-    private void tfUsuarioSeleccionadoSancionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUsuarioSeleccionadoSancionarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUsuarioSeleccionadoSancionarActionPerformed
-
     private void bSancionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSancionarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bSancionarActionPerformed
@@ -685,6 +662,10 @@ public class AdminFrame extends javax.swing.JFrame {
     private void bCancelarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCancelarNuevoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_bCancelarNuevoActionPerformed
+
+    private void cbDocenteHabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbDocenteHabilitarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbDocenteHabilitarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel SubtituloSancion3;
@@ -721,8 +702,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lSubtituloNuevoUsuario;
     private javax.swing.JLabel lSubtituloSancionar;
     private javax.swing.JLabel lTelefonoAlumno;
-    private javax.swing.JLabel lTitleAdmin;
-    private javax.swing.JLabel lUsuarioSeleccionado;
     private javax.swing.JPanel pAgregarUsuario;
     private javax.swing.JPanel pCancelarCurso;
     private javax.swing.JPanel pHabilitarCurso;
@@ -736,6 +715,5 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JTextField tfNombreUsuarioAlumno;
     private javax.swing.JTextField tfNombreUsuarioDocente;
     private javax.swing.JTextField tfTelefonoAlumno;
-    private javax.swing.JTextField tfUsuarioSeleccionadoSancionar;
     // End of variables declaration//GEN-END:variables
 }
