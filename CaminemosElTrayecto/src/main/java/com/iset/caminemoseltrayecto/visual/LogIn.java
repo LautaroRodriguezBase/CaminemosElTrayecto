@@ -47,6 +47,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lMsjDeIngreso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel.setBackground(new java.awt.Color(25, 20, 25));
         jPanel.setPreferredSize(new java.awt.Dimension(500, 400));
@@ -54,10 +55,11 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lUsuario.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         lUsuario.setForeground(new java.awt.Color(255, 255, 255));
         lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lUsuario.setText("Usuario");
+        lUsuario.setText("Nombre de Usuario");
 
         lContrasena.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
         lContrasena.setForeground(new java.awt.Color(255, 255, 255));
+        lContrasena.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lContrasena.setText("Contraseña");
 
         tfUserName.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
@@ -88,18 +90,6 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(225, 225, 225)
-                        .addComponent(lUsuario))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(215, 215, 215)
-                        .addComponent(lContrasena))
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGap(212, 212, 212)
-                        .addComponent(btnIngresar)))
-                .addContainerGap(216, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -107,6 +97,15 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                     .addComponent(tfUserName)
                     .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
                 .addGap(50, 50, 50))
+            .addComponent(lUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(212, 212, 212)
+                .addComponent(btnIngresar)
+                .addContainerGap(216, Short.MAX_VALUE))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
