@@ -6,7 +6,13 @@ import java.util.ArrayList;
 public class Curso implements Serializable{
 
     public static final int cantAlumnosMax = 15;
-    private static final String [] estadosCurso = {"Propuesto", "Habilitado", "Cerrado", "Finalizado"};
+    public static final String [] estadosCurso = {"Propuesto", "Habilitado", "Cerrado", "Finalizado"};
+    public static enum ESTADOS_CURSO{
+        PROPUESTO,
+        HABILITADO,
+        CERRADO,
+        FINALIZADO
+    };
 
     private String nombre;
     private String descripcion;

@@ -67,6 +67,9 @@ public class AdminFrame extends javax.swing.JFrame {
         initComponents();
     }
 
+    void crearArray(){
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -409,8 +412,10 @@ public class AdminFrame extends javax.swing.JFrame {
         if(evt.getSource() == bAddAlumno){
             try {
                 if(
-                    !tfUsuarioAlumno.getText().equals("")  && !tfNombreAlumno.getText().equals("")   &&
-                    !tfApellidoAlumno.getText().equals("") && !tfDNIAlumno.getText().equals("")      &&
+                    !tfUsuarioAlumno.getText().equals("")  &&
+                    !tfNombreAlumno.getText().equals("")   &&
+                    !tfApellidoAlumno.getText().equals("") &&
+                    !tfDNIAlumno.getText().equals("")      &&
                     !tfTelefonoAlumno.getText().equals("")
                 ){
 

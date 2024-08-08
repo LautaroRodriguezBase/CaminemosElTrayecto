@@ -37,6 +37,14 @@ public class AlumnoFrame extends javax.swing.JFrame {
         
         taCursosInscriptos.setText(obtenerListaCursos(CaminemosElTrayecto.verCursosInscriptos(alumno)));
         taCursosAprobados.setText(obtenerListaCursos(CaminemosElTrayecto.verCursosAprobados(alumno)));
+    
+        taNoticias.setText(
+            taNoticias.getText() + "\n" +
+            (alumno.getEstado() == Sancionable.SANCIONADO?
+                "Usted está sancionado":
+                ""
+            )
+        );
     }
 
     /**
