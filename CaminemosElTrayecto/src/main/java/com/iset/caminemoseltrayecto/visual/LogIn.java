@@ -22,11 +22,11 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         this.setLocationRelativeTo(null);
 
         btnIngresar.addActionListener(this);
-        tfUserPass.addKeyListener(this);
+        pfContraseña.addKeyListener(this);
         
         Border borderWhite = BorderFactory.createLineBorder(Color.decode("#ffffff"));
         tfUserName.setBorder(borderWhite);
-        tfUserPass.setBorder(borderWhite);
+        pfContraseña.setBorder(borderWhite);
     }
 
     /**
@@ -42,9 +42,9 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lUsuario = new javax.swing.JLabel();
         lContrasena = new javax.swing.JLabel();
         tfUserName = new javax.swing.JTextField();
-        tfUserPass = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         lMsjDeIngreso = new javax.swing.JLabel();
+        pfContraseña = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -71,32 +71,18 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
             }
         });
 
-        tfUserPass.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
-        tfUserPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfUserPass.setToolTipText("Ingrese su contraseña");
-        tfUserPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfUserPassActionPerformed(evt);
-            }
-        });
-
         btnIngresar.setLabel("Ingresar");
 
         lMsjDeIngreso.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         lMsjDeIngreso.setForeground(new java.awt.Color(255, 255, 255));
         lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        pfContraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-                    .addComponent(tfUserName)
-                    .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE))
-                .addGap(50, 50, 50))
             .addComponent(lUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addGap(212, 212, 212)
@@ -106,6 +92,13 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 .addContainerGap()
                 .addComponent(lContrasena, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+                    .addComponent(tfUserName)
+                    .addComponent(pfContraseña))
+                .addGap(50, 50, 50))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,9 +109,9 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lContrasena)
-                .addGap(18, 18, 18)
-                .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(pfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnIngresar)
@@ -140,10 +133,6 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfUserPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfUserPassActionPerformed
 
     private void tfUserNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfUserNameActionPerformed
         // TODO add your handling code here:
@@ -190,14 +179,14 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lMsjDeIngreso;
     private javax.swing.JLabel lUsuario;
+    private javax.swing.JPasswordField pfContraseña;
     private javax.swing.JTextField tfUserName;
-    private javax.swing.JTextField tfUserPass;
     // End of variables declaration//GEN-END:variables
     
     void ingresar() throws IOException, ClassNotFoundException{
         Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
         String tfU = tfUserName.getText();
-        String tfP = tfUserPass.getText();
+        String tfP = pfContraseña.getText();
         
         // teoricamente todo esto deberia estar en un TRY CATCH
         if(!(tfU.equals("")) && !(tfP.equals(""))){
@@ -209,13 +198,13 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 lMsjDeIngreso.setText(userNotFound.toString());
                 tfUserName.requestFocusInWindow();
                 tfUserName.setBorder(borderRed);
-                tfUserPass.setBorder(borderRed);
+                pfContraseña.setBorder(borderRed);
             }
         }else{
             lMsjDeIngreso.setText("No puedes tener campos vacios.");
             tfUserName.requestFocusInWindow();
             tfUserName.setBorder(borderRed);
-            tfUserPass.setBorder(borderRed);
+            pfContraseña.setBorder(borderRed);
         }
     }
     
@@ -240,7 +229,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
             case KeyEvent.VK_ESCAPE:
                 Border borderGrey = BorderFactory.createLineBorder(Color.decode("#444444"));
                 tfUserName.setBorder(borderGrey);
-                tfUserPass.setBorder(borderGrey);
+                pfContraseña.setBorder(borderGrey);
                 break;
             case KeyEvent.VK_ENTER:
             {
