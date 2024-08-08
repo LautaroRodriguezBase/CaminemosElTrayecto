@@ -39,28 +39,43 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lUsuario = new javax.swing.JLabel();
-        lContrasena = new javax.swing.JLabel();
+        jPanel = new javax.swing.JPanel();
+        lUsuario1 = new javax.swing.JLabel();
+        lContrasena1 = new javax.swing.JLabel();
+        lMsjDeIngreso1 = new javax.swing.JLabel();
         tfUserName = new javax.swing.JTextField();
+        tfUserPass = new javax.swing.JPasswordField();
         btnIngresar = new javax.swing.JButton();
         lMsjDeIngreso = new javax.swing.JLabel();
-        tfUserPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        lUsuario.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        lUsuario.setForeground(new java.awt.Color(0, 0, 0));
-        lUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lUsuario.setText("Usuario");
+        jPanel.setBackground(new java.awt.Color(25, 20, 25));
+        jPanel.setPreferredSize(new java.awt.Dimension(500, 400));
 
-        lContrasena.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
-        lContrasena.setForeground(new java.awt.Color(0, 0, 0));
-        lContrasena.setText("Contraseña");
+        lUsuario1.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        lUsuario1.setForeground(new java.awt.Color(255, 255, 255));
+        lUsuario1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lUsuario1.setText("Nombre de Usuario");
+
+        lContrasena1.setFont(new java.awt.Font("Microsoft YaHei", 1, 12)); // NOI18N
+        lContrasena1.setForeground(new java.awt.Color(255, 255, 255));
+        lContrasena1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lContrasena1.setText("Contraseña");
+
+        lMsjDeIngreso1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        lMsjDeIngreso1.setForeground(new java.awt.Color(255, 255, 255));
+        lMsjDeIngreso1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         tfUserName.setFont(new java.awt.Font("Microsoft YaHei", 0, 12)); // NOI18N
         tfUserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfUserName.setToolTipText("Ingrese su usuario");
+
+        tfUserPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        tfUserPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfUserPass.setActionCommand("Ingresar");
+        tfUserPass.setPreferredSize(new java.awt.Dimension(64, 30));
 
         btnIngresar.setLabel("Ingresar");
 
@@ -68,51 +83,61 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lMsjDeIngreso.setForeground(new java.awt.Color(0, 0, 0));
         lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        tfUserPass.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        tfUserPass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfUserPass.setActionCommand("Ingresar");
-        tfUserPass.setPreferredSize(new java.awt.Dimension(64, 30));
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lUsuario1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lContrasena1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tfUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lMsjDeIngreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50))
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(214, 214, 214)
+                        .addComponent(btnIngresar))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGap(150, 150, 150)
+                        .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addGap(120, 120, 120)
+                .addComponent(lUsuario1)
+                .addGap(18, 18, 18)
+                .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lContrasena1)
+                .addGap(23, 23, 23)
+                .addComponent(tfUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lMsjDeIngreso1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnIngresar)
+                .addGap(18, 18, 18)
+                .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(btnIngresar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(220, 220, 220)
-                        .addComponent(lUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addComponent(lContrasena)))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(150, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(tfUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(tfUserPass, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(150, 150, 150))
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(lUsuario)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(lContrasena)
-                .addGap(13, 13, 13)
-                .addComponent(tfUserPass, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnIngresar)
-                .addGap(18, 18, 18)
-                .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(184, Short.MAX_VALUE))
+            .addComponent(jPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -156,9 +181,11 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel lContrasena;
+    private javax.swing.JPanel jPanel;
+    private javax.swing.JLabel lContrasena1;
     private javax.swing.JLabel lMsjDeIngreso;
-    private javax.swing.JLabel lUsuario;
+    private javax.swing.JLabel lMsjDeIngreso1;
+    private javax.swing.JLabel lUsuario1;
     private javax.swing.JTextField tfUserName;
     private javax.swing.JPasswordField tfUserPass;
     // End of variables declaration//GEN-END:variables
