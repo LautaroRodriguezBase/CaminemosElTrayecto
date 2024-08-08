@@ -66,7 +66,7 @@
                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                       <Component id="lMsjDeIngreso" pref="400" max="32767" attributes="0"/>
                       <Component id="tfUserName" max="32767" attributes="0"/>
-                      <Component id="pfContraseña" max="32767" attributes="0"/>
+                      <Component id="pfContrasenia" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
@@ -82,7 +82,7 @@
                   <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                   <Component id="lContrasena" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="pfContraseña" min="-2" max="-2" attributes="0"/>
+                  <Component id="pfContrasenia" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lMsjDeIngreso" min="-2" pref="22" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -145,7 +145,7 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="pfContrase&#xf1;a">
+        <Component class="javax.swing.JPasswordField" name="pfContrasenia">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>

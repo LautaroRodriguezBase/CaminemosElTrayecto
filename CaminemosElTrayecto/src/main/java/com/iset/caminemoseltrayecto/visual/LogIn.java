@@ -22,11 +22,11 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         this.setLocationRelativeTo(null);
 
         btnIngresar.addActionListener(this);
-        pfContraseña.addKeyListener(this);
+        pfContrasenia.addKeyListener(this);
         
         Border borderWhite = BorderFactory.createLineBorder(Color.decode("#ffffff"));
         tfUserName.setBorder(borderWhite);
-        pfContraseña.setBorder(borderWhite);
+        pfContrasenia.setBorder(borderWhite);
     }
 
     /**
@@ -44,7 +44,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         tfUserName = new javax.swing.JTextField();
         btnIngresar = new javax.swing.JButton();
         lMsjDeIngreso = new javax.swing.JLabel();
-        pfContraseña = new javax.swing.JPasswordField();
+        pfContrasenia = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -77,7 +77,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
         lMsjDeIngreso.setForeground(new java.awt.Color(255, 255, 255));
         lMsjDeIngreso.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        pfContraseña.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pfContrasenia.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
@@ -97,7 +97,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                     .addComponent(tfUserName)
-                    .addComponent(pfContraseña))
+                    .addComponent(pfContrasenia))
                 .addGap(50, 50, 50))
         );
         jPanelLayout.setVerticalGroup(
@@ -110,7 +110,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 .addGap(18, 18, 18)
                 .addComponent(lContrasena)
                 .addGap(31, 31, 31)
-                .addComponent(pfContraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pfContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lMsjDeIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -179,14 +179,14 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
     private javax.swing.JLabel lContrasena;
     private javax.swing.JLabel lMsjDeIngreso;
     private javax.swing.JLabel lUsuario;
-    private javax.swing.JPasswordField pfContraseña;
+    private javax.swing.JPasswordField pfContrasenia;
     private javax.swing.JTextField tfUserName;
     // End of variables declaration//GEN-END:variables
     
     void ingresar() throws IOException, ClassNotFoundException{
         Border borderRed = BorderFactory.createLineBorder(Color.decode("#ff0000"));
         String tfU = tfUserName.getText();
-        String tfP = pfContraseña.getText();
+        String tfP = pfContrasenia.getText();
         
         // teoricamente todo esto deberia estar en un TRY CATCH
         if(!(tfU.equals("")) && !(tfP.equals(""))){
@@ -198,13 +198,13 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
                 lMsjDeIngreso.setText(userNotFound.toString());
                 tfUserName.requestFocusInWindow();
                 tfUserName.setBorder(borderRed);
-                pfContraseña.setBorder(borderRed);
+                pfContrasenia.setBorder(borderRed);
             }
         }else{
             lMsjDeIngreso.setText("No puedes tener campos vacios.");
             tfUserName.requestFocusInWindow();
             tfUserName.setBorder(borderRed);
-            pfContraseña.setBorder(borderRed);
+            pfContrasenia.setBorder(borderRed);
         }
     }
     
@@ -229,7 +229,7 @@ public class LogIn extends javax.swing.JFrame implements ActionListener, KeyList
             case KeyEvent.VK_ESCAPE:
                 Border borderGrey = BorderFactory.createLineBorder(Color.decode("#444444"));
                 tfUserName.setBorder(borderGrey);
-                pfContraseña.setBorder(borderGrey);
+                pfContrasenia.setBorder(borderGrey);
                 break;
             case KeyEvent.VK_ENTER:
             {
