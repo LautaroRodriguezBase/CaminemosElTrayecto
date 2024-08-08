@@ -12,7 +12,7 @@ public class Curso implements Serializable{
     private String descripcion;
     private String estadoCurso = "Propuesto";
 
-    private ArrayList<Alumno> alumnos;
+    private ArrayList<Alumno> alumnos = new ArrayList<Alumno>();
     private Docente titular;
     private Curso[] cursosPrevios;
 

@@ -7,13 +7,14 @@ package com.iset.caminemoseltrayecto.visual;
 import com.iset.caminemoseltrayecto.CaminemosElTrayecto;
 import com.iset.caminemoseltrayecto.modelos.Alumno;
 import com.iset.caminemoseltrayecto.modelos.Curso;
+import java.util.ArrayList;
 
 /**
  *
  * @author lauti
  */
 public class AlumnoFrame extends javax.swing.JFrame {
-    private Curso cursosD[] = null;
+    private Curso cursosD[];
     private Alumno alumno;
     /**
      * Creates new form UserFrame
@@ -22,9 +23,20 @@ public class AlumnoFrame extends javax.swing.JFrame {
         this.alumno = alumno;
         this.setTitle("Bienvenido " + this.alumno.getNombre() + " " + this.alumno.getApellido());
         
-        cursosD = (Curso[]) CaminemosElTrayecto.verCursosDisponibles(alumno).toArray();
+        //No entiendo por que no puedo hacer (Curso[])CaminemosElTrayecto.verCursosDisponibles(alumno).toArray()
+        //Por esto: Funciona -> Integer nums[] = lista.toArray(new Integer[lista.size()]);
+        cursosD = new Curso[CaminemosElTrayecto.verCursosDisponibles(alumno) == null? 1 : CaminemosElTrayecto.verCursosDisponibles(alumno).size() + 1];//(Curso[])
+        cursosD[0] = null;
+        if(cursosD.length > 1){
+            for(int i = 1; i < cursosD.length; i++){
+                cursosD[i] = CaminemosElTrayecto.verCursosDisponibles(alumno).get(i-1);
+            }   
+        }
 
         initComponents();
+        
+        taCursosInscriptos.setText(obtenerListaCursos(CaminemosElTrayecto.verCursosInscriptos(alumno)));
+        taCursosAprobados.setText(obtenerListaCursos(CaminemosElTrayecto.verCursosAprobados(alumno)));
     }
 
     /**
@@ -39,7 +51,7 @@ public class AlumnoFrame extends javax.swing.JFrame {
         lTitleAlumno = new javax.swing.JLabel();
         bSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taNoticias = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         lCursosDisponibles = new javax.swing.JLabel();
         cbCursosDisponibles = new javax.swing.JComboBox<>();
@@ -62,12 +74,12 @@ public class AlumnoFrame extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(10);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(30);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        taNoticias.setEditable(false);
+        taNoticias.setColumns(10);
+        taNoticias.setLineWrap(true);
+        taNoticias.setRows(30);
+        taNoticias.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(taNoticias);
 
         jLabel1.setText("Noticias");
 
@@ -135,10 +147,11 @@ public class AlumnoFrame extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lTitleAlumno)
                 .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(35, 35, 35)
@@ -173,7 +186,14 @@ public class AlumnoFrame extends javax.swing.JFrame {
 
     private void bAgregarmeCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAgregarmeCursoActionPerformed
         if(evt.getSource() == bAgregarmeCurso){
-            
+            Curso cSelec = (Curso) cbCursosDisponibles.getSelectedItem();
+            if(cSelec != null){
+                CaminemosElTrayecto.addAlumnoAlCurso(alumno, cSelec);
+                taNoticias.setText("Te has inscripto al curso " + cSelec.toString());
+                taCursosInscriptos.setText(obtenerListaCursos(CaminemosElTrayecto.verCursosInscriptos(alumno)));
+            }else{
+                taNoticias.setText("Debes seleccionar un curso para inscribirte");
+            }
         }
     }//GEN-LAST:event_bAgregarmeCursoActionPerformed
 
@@ -224,10 +244,20 @@ public class AlumnoFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lCursosDisponibles;
     private javax.swing.JLabel lTitleAlumno;
     private javax.swing.JTextArea taCursosAprobados;
     private javax.swing.JTextArea taCursosInscriptos;
+    private javax.swing.JTextArea taNoticias;
     // End of variables declaration//GEN-END:variables
+
+    private String obtenerListaCursos(ArrayList<Curso> cur){
+        String listC = "";
+
+        for(Curso c : cur){
+            listC += c.toString() + "\n";
+        }
+
+        return listC;
+    } 
 }

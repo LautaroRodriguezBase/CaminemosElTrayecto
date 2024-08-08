@@ -245,16 +245,24 @@ public class DocenteFrame extends javax.swing.JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == bCrearCurso){
-            Curso [] cursosPrevios = {null, null};
+            Curso [] cursosPrevios = new Curso[2];
+            boolean cursosPreviosValidos = true;
+
             if(cbCursosPrevios1.getSelectedItem() != null){
+                
                 cursosPrevios[0] = (Curso)cbCursosPrevios1.getSelectedItem();
-            }
-            if(cbCursosPrevios2.getSelectedItem() != null){
-                cursosPrevios[1] = (Curso)cbCursosPrevios2.getSelectedItem();
+                
+                if(cbCursosPrevios1.getSelectedItem() != cbCursosPrevios2.getSelectedItem()){//Si son iguales toma solo el 1
+                    if(cbCursosPrevios2.getSelectedItem() != null){
+                        cursosPrevios[1] = (Curso)cbCursosPrevios2.getSelectedItem();
+                    }
+                }
+            }else if(cbCursosPrevios2.getSelectedItem() != null){
+                cursosPreviosValidos = false;
             }
 
             try{
-                if( (tfNombreCurso.getText() != null || tfNombreCurso.getText().equals("")) && (taDescripcion.getText() != null ||taDescripcion.getText().equals("") ) ){
+                if(cursosPreviosValidos && (tfNombreCurso.getText() != null || tfNombreCurso.getText().equals("")) && (taDescripcion.getText() != null ||taDescripcion.getText().equals("") ) ){
 
                     System.out.println("try");
                     Curso cursoNuevo = new Curso(tfNombreCurso.getText(), taDescripcion.getText(), this.docente, cursosPrevios);

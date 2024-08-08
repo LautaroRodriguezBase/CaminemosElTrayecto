@@ -80,7 +80,6 @@ public class AdminFrame extends javax.swing.JFrame {
         cbAlumnos = new javax.swing.JComboBox<>();
         cbDocentes = new javax.swing.JComboBox<>();
         cbCursos = new javax.swing.JComboBox<>();
-        lUsuarioSeleccionado = new javax.swing.JLabel();
         lCursoSeleccionado = new javax.swing.JLabel();
         bSancionar = new javax.swing.JButton();
         bHabilitarCurso = new javax.swing.JButton();
@@ -125,9 +124,7 @@ public class AdminFrame extends javax.swing.JFrame {
         cbCursos.setModel(new javax.swing.DefaultComboBoxModel<>(cursos));
         cbCursos.setSelectedItem(cursos[0]);
 
-        lUsuarioSeleccionado.setText("Usuario seleccionado:");
-
-        lCursoSeleccionado.setText("Curso seleccionado:");
+        lCursoSeleccionado.setText("Curso");
 
         bSancionar.setText("Sancionar/QuitarSancion");
         bSancionar.addActionListener(new java.awt.event.ActionListener() {
@@ -203,32 +200,12 @@ public class AdminFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lTitleAdmin)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bSalir)
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lTitleAdmin)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lUsuarioSeleccionado)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(cbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(cbDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(bSancionar))
-                                .addGap(82, 82, 82)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(bHabilitarCurso)
-                                    .addComponent(lCursoSeleccionado)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(61, 61, 61)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(tfUsuarioDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
@@ -239,9 +216,20 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(tfNombreDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfApellidoDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfDNIDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bAddDocente))
-                        .addGap(117, 117, 117)
+                            .addComponent(bAddDocente)
+                            .addComponent(bSancionar)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel14)
+                                    .addComponent(cbDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel12))
+                        .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bHabilitarCurso)
+                            .addComponent(lCursoSeleccionado)
                             .addComponent(tfUsuarioAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6)
                             .addComponent(jLabel4)
@@ -253,36 +241,26 @@ public class AdminFrame extends javax.swing.JFrame {
                             .addComponent(tfApellidoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfDNIAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfTelefonoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bAddAlumno)))
-                    .addComponent(jLabel12))
-                .addContainerGap(431, Short.MAX_VALUE))
+                            .addComponent(bAddAlumno))))
+                .addContainerGap(643, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lTitleAdmin)
-                    .addComponent(bSalir))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel14))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(lTitleAdmin)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2))
-                    .addComponent(cbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(tfUsuarioAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(tfUsuarioDocente, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -314,21 +292,32 @@ public class AdminFrame extends javax.swing.JFrame {
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(tfTelefonoAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(bAddDocente)
-                            .addComponent(bAddAlumno)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lUsuarioSeleccionado)
-                            .addComponent(lCursoSeleccionado))
-                        .addGap(18, 18, 18)
+                            .addComponent(bAddAlumno))
+                        .addGap(70, 70, 70)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bHabilitarCurso)
-                            .addComponent(bSancionar))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(277, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel12)
+                                    .addComponent(jLabel14))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cbDocentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bSancionar))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lCursoSeleccionado)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                                .addComponent(cbCursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(bHabilitarCurso)))
+                        .addGap(0, 148, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -382,10 +371,11 @@ public class AdminFrame extends javax.swing.JFrame {
     private void bHabilitarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bHabilitarCursoActionPerformed
         try {
             if(cbCursos.getSelectedItem() != null){
+
                 Curso curSel = (Curso)cbCursos.getSelectedItem();
-                System.out.println(curSel.getEstadoCurso());
+
                 CaminemosElTrayecto.habilitarCurso(curSel);
-                System.out.println(curSel.getEstadoCurso());
+                taMsjSancionar.setText("El curso " + curSel.getNombre() + " se habilito.");
             }
         } catch (EstadoNoValidoException ex) {
             Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
@@ -397,8 +387,19 @@ public class AdminFrame extends javax.swing.JFrame {
     private void bAddDocenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddDocenteActionPerformed
         if(evt.getSource() == bAddDocente){
             try {
-                CaminemosElTrayecto.addDocente(new Docente(tfUsuarioDocente.getText(), tfDNIDocente.getText(), tfNombreDocente.getText(), tfApellidoDocente.getText(), tfDNIDocente.getText()));
-            } catch (IOException ex) {
+                if(
+                    !tfUsuarioDocente.getText().equals("")  &&
+                    !tfNombreDocente.getText().equals("")   &&
+                    !tfApellidoDocente.getText().equals("") &&
+                    !tfDNIDocente.getText().equals("")
+                ){
+                    
+                    CaminemosElTrayecto.addDocente(new Docente(tfUsuarioDocente.getText(), tfDNIDocente.getText(), tfNombreDocente.getText(), tfApellidoDocente.getText(), tfDNIDocente.getText()));
+                    taMsjSancionar.setText("Se agregó al docente " + tfNombreDocente.getText());
+                }else{
+                    taMsjSancionar.setText("Campos Vacios al crear al docente");
+                }
+            }catch (IOException ex) {
                 Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -407,8 +408,19 @@ public class AdminFrame extends javax.swing.JFrame {
     private void bAddAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAddAlumnoActionPerformed
         if(evt.getSource() == bAddAlumno){
             try {
-                CaminemosElTrayecto.addAlumno(new Alumno(tfUsuarioAlumno.getText(), tfDNIAlumno.getText(), tfNombreAlumno.getText(), tfApellidoAlumno.getText(), tfDNIAlumno.getText(), tfTelefonoAlumno.getText()));
-            } catch (IOException ex) {
+                if(
+                    !tfUsuarioAlumno.getText().equals("")  && !tfNombreAlumno.getText().equals("")   &&
+                    !tfApellidoAlumno.getText().equals("") && !tfDNIAlumno.getText().equals("")      &&
+                    !tfTelefonoAlumno.getText().equals("")
+                ){
+
+                    CaminemosElTrayecto.addAlumno(new Alumno(tfUsuarioAlumno.getText(), tfDNIAlumno.getText(), tfNombreAlumno.getText(), tfApellidoAlumno.getText(), tfDNIAlumno.getText(), tfTelefonoAlumno.getText()));
+                    taMsjSancionar.setText("Se agregó al Alumno " + tfNombreAlumno.getText());
+                
+                }else{
+                    taMsjSancionar.setText("Campos Vacios al crear al alumno");
+                }
+            }catch (IOException ex) {
                 Logger.getLogger(AdminFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -439,7 +451,6 @@ public class AdminFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lCursoSeleccionado;
     private javax.swing.JLabel lTitleAdmin;
-    private javax.swing.JLabel lUsuarioSeleccionado;
     private javax.swing.JTextArea taMsjSancionar;
     private javax.swing.JTextField tfApellidoAlumno;
     private javax.swing.JTextField tfApellidoDocente;

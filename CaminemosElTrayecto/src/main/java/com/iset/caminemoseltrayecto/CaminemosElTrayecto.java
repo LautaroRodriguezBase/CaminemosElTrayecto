@@ -268,15 +268,14 @@ public class CaminemosElTrayecto {
         if(a != null && c != null){
             c.addAlumno(a);
             a.addCursoInscripto(c);
+            try {
+                CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+                CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+            } catch (IOException ex) {
+                Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }else{
             throw new NullPointerException("El curso y/o el alumno que a ingresado no es valido");
-        }
-
-        try {
-            CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
-            CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
-        } catch (IOException ex) {
-            Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -284,8 +283,30 @@ public class CaminemosElTrayecto {
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
 
         for(Curso c : CaminemosElTrayecto.cursos){
-            Curso [] cursosPrevios = c.getCursosPrevios();
-
+            if(!(a.getCursosInscriptos().contains(c))){
+                Curso [] cursosPrevios = c.getCursosPrevios();
+                
+                if(cursosPrevios[0] == null && cursosPrevios[1] == null){
+                    cursosDisponibles.add(c);
+                
+                }else if(cursosPrevios[0] != null && cursosPrevios[1] == null){
+                    if(a.getCursosAprobados().contains(cursosPrevios[0])){
+                        cursosDisponibles.add(c);
+                    }
+                
+                }else if(cursosPrevios[0] == null && cursosPrevios[1] != null){
+                    if(a.getCursosAprobados().contains(cursosPrevios[1])){
+                        cursosDisponibles.add(c);
+                    }
+                
+                }else if(cursosPrevios[0] == null && cursosPrevios[1] == null){
+                    if(a.getCursosAprobados().contains(cursosPrevios[0]) && a.getCursosAprobados().contains(cursosPrevios[1])){
+                        cursosDisponibles.add(c);
+                    }
+                }
+            }
+            /*
+            ESTA MAL PLANTEADO, UN ARRAY COMUN NO PUEDE VARIAR SU LARGO
             switch(cursosPrevios.length){
                 case 0 -> cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
 
@@ -300,7 +321,7 @@ public class CaminemosElTrayecto {
                         cursosDisponibles.add(c);
                     }
                 }
-            }
+            }*/
         }
 
         return cursosDisponibles;
@@ -317,7 +338,7 @@ public class CaminemosElTrayecto {
     }
     public static ArrayList<Curso> verCursosCerrados(Docente d){
         return getCursosConEstadoEn(d.getCursosCreados(), "Cerrado");
-    } 
+    }
     
         // Esta tambien la invoca el Docente y Admin
     public static void changePass(User u, String pass){
