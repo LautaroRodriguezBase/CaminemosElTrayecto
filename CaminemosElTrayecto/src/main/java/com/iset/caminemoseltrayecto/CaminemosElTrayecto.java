@@ -115,12 +115,13 @@ public class CaminemosElTrayecto {
     }
             //Esta pertenece al Controlador
     private static ArrayList<Curso> getCursosConEstadoEn(ArrayList<Curso> cursosConEstadoEn, String estado){
-        for(Curso c : CaminemosElTrayecto.cursos){
+        ArrayList <Curso> cursosConEE = new ArrayList<Curso>();
+        for(Curso c : cursosConEstadoEn){
             if(c.getEstadoCurso().equals(estado)){
-                cursosConEstadoEn.add(c);
+                cursosConEE.add(c);
             }
         }
-        return cursosConEstadoEn;
+        return cursosConEE;
     }
         //Solo es necesario escribir users y cursos
 
@@ -132,10 +133,10 @@ public class CaminemosElTrayecto {
      */
     public static <T> void writeInFile(String archivo, ArrayList<T> list) throws IOException{
         try{
-             fileOut = new FileOutputStream(archivo);
-             output = new ObjectOutputStream(fileOut);
-             
-             if (output != null) {
+            fileOut = new FileOutputStream(archivo);
+            output = new ObjectOutputStream(fileOut);
+
+            if (output != null){
                 output.writeObject(list);
                 output.close();
             }
@@ -207,8 +208,9 @@ public class CaminemosElTrayecto {
     //Todas las funciones que hacen cambios en los objetos también tienen que actualizar los archivos
     public static void habilitarCurso(Curso c) throws EstadoNoValidoException, IOException{//la ejecuta el administrador.
                                                //Deberia tambien el Docente pero la visual deberia mostrarle solo los cerrados
-        c.cambiarEstado("Habilitado");//el estado del curso deberia ser un int, y de ahi asociarlo a un Stirng
+        c.cambiarEstado(Curso.getEstadosCurso()[Curso.HABILITADO]);
         CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
+        CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
     }
         //Medio al pedo la de arriba si basicamente lo hace la de abajo. El nombre de la de arriba tiene que ir en el btn de la visual
     public static void cambiarEstadoDelCurso(Curso c, String estado) throws EstadoNoValidoException {
@@ -283,7 +285,7 @@ public class CaminemosElTrayecto {
         ArrayList<Curso> cursosDisponibles = new ArrayList<Curso>();
 
         for(Curso c : CaminemosElTrayecto.cursos){
-            if(!(a.getCursosInscriptos().contains(c))){
+            if(!a.getCursosInscriptos().contains(c) && !a.getCursosAprobados().contains(c)){
                 Curso [] cursosPrevios = c.getCursosPrevios();
                 
                 if(cursosPrevios[0] == null && cursosPrevios[1] == null){
@@ -305,23 +307,6 @@ public class CaminemosElTrayecto {
                     }
                 }
             }
-            /*
-            ESTA MAL PLANTEADO, UN ARRAY COMUN NO PUEDE VARIAR SU LARGO
-            switch(cursosPrevios.length){
-                case 0 -> cursosDisponibles.add(c);//Se muestrasn como disponibles los que no tienen cursos previos
-
-                case 1 -> {
-                    if(a.getCursosAprobados().contains(cursosPrevios[0])){
-                        cursosDisponibles.add(c);
-                    }
-                }
-
-                case 2 -> {
-                    if(a.getCursosAprobados().contains(cursosPrevios[0]) && a.getCursosAprobados().contains(cursosPrevios[1])){
-                        cursosDisponibles.add(c);
-                    }
-                }
-            }*/
         }
 
         return cursosDisponibles;
@@ -391,6 +376,7 @@ public class CaminemosElTrayecto {
         try {
             CaminemosElTrayecto.writeInFile("cursos.dat", cursos);
             CaminemosElTrayecto.writeInFile("alumnos.dat", alumnos);
+            CaminemosElTrayecto.writeInFile("docentes.dat", docentes);
         } catch (IOException ex) {
             Logger.getLogger(CaminemosElTrayecto.class.getName()).log(Level.SEVERE, null, ex);
         }
