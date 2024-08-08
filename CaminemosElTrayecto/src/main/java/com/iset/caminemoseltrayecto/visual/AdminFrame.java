@@ -32,6 +32,14 @@ public class AdminFrame extends javax.swing.JFrame {
     public AdminFrame(Admin admin){
         this.admin = admin;
         
+        initArrayAlumnos();
+        initArrayDocente();
+        initArrayCursos();
+
+        initComponents();
+    }
+
+    void initArrayAlumnos(){
         alumnos = new Alumno[((CaminemosElTrayecto.getAlumnos() == null)? 1 : CaminemosElTrayecto.getAlumnos().size() + 1)];
         alumnos[0] = null;
 
@@ -42,7 +50,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 i++;
             }
         }
-        
+    }
+    void initArrayDocente(){
         docentes = new Docente[((CaminemosElTrayecto.getDocentes() == null)? 1 : CaminemosElTrayecto.getDocentes().size() + 1)];
         docentes[0] = null;
 
@@ -53,7 +62,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 i++;
             }
         }
-        
+    }
+    void initArrayCursos(){
         cursos = new Curso[((CaminemosElTrayecto.getCursos() == null)? 1 : CaminemosElTrayecto.getCursos().size() + 1)];
         cursos[0] = null;
 
@@ -64,12 +74,8 @@ public class AdminFrame extends javax.swing.JFrame {
                 i++;
             }
         }
-        initComponents();
     }
-
-    void crearArray(){
-        
-    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -399,6 +405,10 @@ public class AdminFrame extends javax.swing.JFrame {
                     
                     CaminemosElTrayecto.addDocente(new Docente(tfUsuarioDocente.getText(), tfDNIDocente.getText(), tfNombreDocente.getText(), tfApellidoDocente.getText(), tfDNIDocente.getText()));
                     taMsjSancionar.setText("Se agregó al docente " + tfNombreDocente.getText());
+                    
+                    initArrayDocente();
+                    cbDocentes.setModel(new javax.swing.DefaultComboBoxModel<>(docentes));
+                    cbDocentes.setSelectedItem(docentes[0]);
                 }else{
                     taMsjSancionar.setText("Campos Vacios al crear al docente");
                 }
@@ -421,8 +431,10 @@ public class AdminFrame extends javax.swing.JFrame {
 
                     CaminemosElTrayecto.addAlumno(new Alumno(tfUsuarioAlumno.getText(), tfDNIAlumno.getText(), tfNombreAlumno.getText(), tfApellidoAlumno.getText(), tfDNIAlumno.getText(), tfTelefonoAlumno.getText()));
                     taMsjSancionar.setText("Se agregó al Alumno " + tfNombreAlumno.getText());
-                
-                }else{
+                    initArrayAlumnos();
+                    cbAlumnos.setModel(new javax.swing.DefaultComboBoxModel<>(alumnos));
+                    cbAlumnos.setSelectedItem(alumnos[0]);
+               }else{
                     taMsjSancionar.setText("Campos Vacios al crear al alumno");
                 }
             }catch (IOException ex) {
