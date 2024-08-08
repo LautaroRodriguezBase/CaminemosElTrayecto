@@ -35,45 +35,21 @@ public class AdminFrame extends javax.swing.JFrame {
         initArrayAlumnos();
         initArrayDocente();
         initArrayCursos();
-
         initComponents();
+        
+        cbAlumnos.setSelectedIndex(-1);
+        cbDocentes.setSelectedIndex(-1);
+        cbCursos.setSelectedIndex(-1);
     }
-
+    
     void initArrayAlumnos(){
-        alumnos = new Alumno[((CaminemosElTrayecto.getAlumnos() == null)? 1 : CaminemosElTrayecto.getAlumnos().size() + 1)];
-        alumnos[0] = null;
-
-        if(alumnos.length >=2){
-            int i = 1;
-            for(Alumno a : CaminemosElTrayecto.getAlumnos()){
-                alumnos[i] = a;// el i++ se puede agregar adentro de los corchetes teoricamente.
-                i++;
-            }
-        }
+        alumnos = CaminemosElTrayecto.getAlumnos().toArray(new Alumno[CaminemosElTrayecto.getAlumnos().size() + 1]);
     }
     void initArrayDocente(){
-        docentes = new Docente[((CaminemosElTrayecto.getDocentes() == null)? 1 : CaminemosElTrayecto.getDocentes().size() + 1)];
-        docentes[0] = null;
-
-        if(docentes.length >=2){
-            int i = 1;
-            for(Docente a : CaminemosElTrayecto.getDocentes()){
-                docentes[i] = a;// el i++ se puede agregar adentro de los corchetes teoricamente.
-                i++;
-            }
-        }
+        docentes = CaminemosElTrayecto.getDocentes().toArray(new Docente[CaminemosElTrayecto.getDocentes().size() + 1]);
     }
     void initArrayCursos(){
-        cursos = new Curso[((CaminemosElTrayecto.getCursos() == null)? 1 : CaminemosElTrayecto.getCursos().size() + 1)];
-        cursos[0] = null;
-
-        if(cursos.length >=2){
-            int i = 1;
-            for(Curso a : CaminemosElTrayecto.getCursos()){
-                cursos[i] = a;// el i++ se puede agregar adentro de los corchetes teoricamente.
-                i++;
-            }
-        }
+        cursos = CaminemosElTrayecto.getCursos().toArray(new Curso[CaminemosElTrayecto.getCursos().size() + 1]);
     }
     
     /**
